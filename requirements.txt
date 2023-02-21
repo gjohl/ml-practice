@@ -1,7 +1,11 @@
 jupyterlab
+lxml
 matplotlib
 numpy
 pandas
+Pillow
 plotly
 scipy
 scikit-learn
+seaborn
+tensorflow
