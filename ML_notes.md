@@ -35,7 +35,7 @@ For supervised learning:
 #### 2.2.1 ANN (Artificial Neural Network)
 General idea of a neural network that can then be extended to specific cases, e.g. CNNs and RNNs.
 
-- Perceptron: a weighted average of inputs
+- Perceptron: a weighted average of inputs passed through some activation gate function to arrive at an output decision
 - Network of perceptrons
 - Activation function: a non-linear transfer function f(wx+b)
 - Cost function and gradient descent: convex optimisation of a loss function using sub-gradient descent. The optimizer can be set in the compile method of the model.
