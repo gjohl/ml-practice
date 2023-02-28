@@ -2,7 +2,7 @@
 These are assorted notes on topics from various courses and projects.
 
 ## 1. End-end-process
-1. Data sourcing  - train_test_spllit
+1. Data sourcing  - train_test_split
 2. Exploratory data analysis - plot distributions, correlations
 3. Data cleaning - drop redundant columns, handle missing data (drop or impute)
 4. Feature engineering - one hot encoding categories, scaling/normalising numerical values, combining columns, extracting info from columns (e.g. zip code from address) 
@@ -10,9 +10,6 @@ These are assorted notes on topics from various courses and projects.
 6. Model tuning and evaluation metrics - classification: classification_report, confusion matrix, accuracy, recall, F1. Regression: error (RMSE, MAE, etc)
 7. Predictions
 
-
-### 1.1 Data sourcing
-[//]: # (TODO section on each part of the list above)
 
 ## 2. Models
 
@@ -36,13 +33,14 @@ For supervised learning:
 ### 2.2. Machine learning models
 
 #### 2.2.1 ANN (Artificial Neural Network)
+General idea of a neural network that can then be extended to specific cases, e.g. CNNs and RNNs.
 
-- Perceptron
+- Perceptron: a weighted average of inputs
 - Network of perceptrons
-- Activation function
-- Cost function and gradient descent
-- Backpropagation
-- Dropout
+- Activation function: a non-linear transfer function f(wx+b)
+- Cost function and gradient descent: convex optimisation of a loss function using sub-gradient descent. The optimizer can be set in the compile method of the model.
+- Backpropagation: use chain rule to determine partial gradients of each weight and bias. This means we only need a single forward pass followed by a single backward pass. Contrast this to if we perturbed each weight or bias to determine each partial gradient: in that case, for each epoch we would need to run a forward pass per weight/bias in the network, which is potentially millions! 
+- Dropout: a technique to avoid overfitting by randomly dropping neurons in each epoch.
 
 General structure:
 1. Input layer
@@ -56,6 +54,14 @@ Input and output layers are determined by the problem:
 - Loss function determined by problem. For single class classification `loss='binary_crossentropy'`, for multiclass classification `loss='categorical_crossentropy'`
 
 Hidden layers are less well-defined. Some heuristics here: https://stats.stackexchange.com/questions/181/how-to-choose-the-number-of-hidden-layers-and-nodes-in-a-feedforward-neural-netw
+
+
+Vanishing gradients can be an issue for lower layers in particular, where the partial gradients of individual layers can be very small, so when multiplied together in chain rule the gradient is vanishingly small.
+Exploding gradients are a similar issue but where gradients get increasingly large when multiplied together.
+Some techniques to rectify vanishing/exploding gradients:
+- Use different activation functions with larger gradients close to 0 and 1, e.g. leaky ReLU or ELU (exponential linear unit)
+- Batch normalisation: scale each gradient by the mean and standard deviation of the batch
+- Different weight initialisation methods, e.g. Xavier initialisation
 
 
 Example model outline
@@ -94,6 +100,8 @@ model.predict(new_input)  # The new input needs to be shaped and scaled the sane
 
 
 #### 2.2.2. CNN (Convolutional Neural Network)
+These are used for image classification problems where convolutional filters are useful for extracting features from input arrays.
+
 - Image kernels/filters
   - Grayscale 2D arrays
   - RGB 3D tensors
@@ -105,8 +113,9 @@ General structure:
 2. Convolutional layer
 3. Pooling layer
 4. (Optionally more pairs of convolutional and pooling layers)
-5. Dense hidden layer
-6. Output layer
+5. Flattening layer 
+6. Dense hidden layer(s)
+7. Output layer
 
 
 Example model outline
@@ -131,7 +140,7 @@ model.add(Dense(128, activation='relu'))
 model.add(Dense(10, activation='softmax'))  # Size and activation determined by problem; multiclass classification in this case
 
 # Problem setup
-model.compile(loss='categorical_crossentropy', optimizer='adam')  # Loss determined by problem, multiclass slassification in this case
+model.compile(loss='categorical_crossentropy', optimizer='adam')  # Loss determined by problem, multiclass classification in this case
 
 # Training (with optional early stopping)
 early_stop = EarlyStopping(monitor='val_loss',patience=2)
@@ -141,6 +150,13 @@ model.fit(x_train,y_cat_train,epochs=10,validation_data=(x_test,y_cat_test),call
 model.predict(new_input)  # The new input needs to be shaped and scaled the sane as the training data
 ```
 
+#### 2.2.3. RNN (Recurrent Neural Network)
+These are used for modelling sequences with variable lengths of inputs and outputs.
+
+Recurrent neurons take as their input the current data AND the previous epoch's output.
+LSTMs take this idea a step further by incorporating the previous epochs input AND some longer lookback of epoch.
+
+
 ## A. Appendix
 ### A.1. Useful resources
 Neural networks:
@@ -148,6 +164,10 @@ Neural networks:
 - The deep learning bible (with lectures) https://www.deeplearningbook.org/
 - Udemy course: https://www.udemy.com/course/complete-tensorflow-2-and-keras-deep-learning-bootcamp
 - Heuristics for choosing hidden layers https://stats.stackexchange.com/questions/181/how-to-choose-the-number-of-hidden-layers-and-nodes-in-a-feedforward-neural-netw
+- Alternatives to the deprecated model predict for different classification problems https://stackoverflow.com/questions/68776790/model-predict-classes-is-deprecated-what-to-use-instead
 
 CNNs:
-- Image kernels explained: https://setosa.io/ev/image-kernels/
+- Image kernels explained https://setosa.io/ev/image-kernels/
+- Choosing CNN layers https://stats.stackexchange.com/questions/148139/rules-for-selecting-convolutional-neural-network-hyperparameters
+
+RNNs:
