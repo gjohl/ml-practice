@@ -153,8 +153,97 @@ model.predict(new_input)  # The new input needs to be shaped and scaled the sane
 #### 2.2.3. RNN (Recurrent Neural Network)
 These are used for modelling sequences with variable lengths of inputs and outputs.
 
-Recurrent neurons take as their input the current data AND the previous epoch's output.
-LSTMs take this idea a step further by incorporating the previous epochs input AND some longer lookback of epoch.
+Recurrent neurons take as their input the current data AND the previous epoch's output. 
+We could try to pass EVERY previous epoch's output as an input, but would run into issues of vanushing gradients.
+
+LSTMs take this idea a step further by incorporating the previous epochs input AND some longer lookback of epoch where some old outputs are "forgotten".
+
+A basic RNN:
+```
+
+            --------------------------------
+            |                              |
+ H_t-1 ---> |                              |---> H_t
+            |                              |
+ X_t   ---> |                              |
+            |                              |
+            --------------------------------
+
+where:
+H_t is the neuron's output at current epoch t
+H_t-1 is the neuron's output from the previous epoch t-1
+X_t is the input data at current epoch t
+
+H_t = tanh(W[H_t-1, X_t] + b)
+```
+
+An LSTM (Long Short Term Memory) unit:
+```
+
+            --------------------------------
+            |                              |
+ H_t-1 ---> |                              |---> H_t
+            |                              |
+ C_t-1 ---> |                              |---> C_t
+            |                              |
+ X_t   ---> |                              |
+            |                              |
+            --------------------------------
+            
+The `forget gate` determines which part of the old short-term memory and current input is "forgotten" by the new long-term memory.
+These are a set of weights (between 0 and 1) that get applied to the old long-term memory to downweight it.
+F_t = sigmoid(W_F[H_t-1, X_t] + b_F)
+
+The `input gate` i_t similarly gates the input and old short-term memory.
+This will later (in the update gate) get combined  with a candidate value for the new long-term memory `C_candidate_t`
+I_t = sigmoid(W_I[H_t-1, X_t] + b_I)
+C_candidate_t = tanh(W_C_cand[H_t-1, X_t] + b_C_cand) 
+
+The `update gate` for the new long-term memory `C_t` is then calculated as a sum of forgotten old memory and input-weighted candidate memory:
+C_t = F_t*C_t-1 + I_t*C_candidate_t 
+
+The `output gate` O_t is a combination of the old short-term memory and latest input data.
+This is then combined with the latest long-term memory to produce the output of the recurrent neuron, which is also the updated short-term memory H_t:
+O_t = sigmoid(W_O[H_t-1, X_t] + b_O)
+H_t = O_t * tanh(C_t) 
+
+where:
+H_t is short-term memory at epoch t
+C_t is long-term memory at epoch t
+X_t is the input data at current epoch t
+
+sigmoid is a sigmoid  activation function
+F_t is an intermediate forget gate weight
+I_t is an intermediate input gate weight
+O_t is an intermediate output gate weight
+```
+
+
+There are several variants of RNNs.
+*RNNs with peepholes*
+This leaks long-term memory into the forget, input and output gates.
+Note that the forget gate and input gate each get the OLD long-term memory, whereas the output gate gets the NEW long-term memory.
+```
+F_t = sigmoid(W_F[C_t-1, H_t-1, X_t] + b_F)
+I_t = sigmoid(W_I[C_t-1, H_t-1, X_t] + b_I)
+O_t = sigmoid(W_O[C_t, H_t-1, X_t] + b_O)
+```
+
+*Gated Recurrent Unit (GRU)*
+This combines the forget and input gates into a single gate. It also has some other changes.
+This is simpler than a typical LSTM model as it has fewer parameters. This makes it more computationally efficient, and in practice they can have similar performance.
+```
+z_t = sigmoid(W_z[H_t-1, X_t])
+r_t = sigmoid(W_r[H_t-1, X_t])
+H_candidate_t = tanh(W_H_candidate[r_t*h_t-1, x_t])
+H_t = (1 - z_t) * H_t-1 + z_t * H_candidate_t
+```
+
+
+The sequences modelled with RNNS can be:
+- One-to-many
+- Many-to-many
+- Many-to-one
 
 
 ## A. Appendix
@@ -171,3 +260,7 @@ CNNs:
 - Choosing CNN layers https://stats.stackexchange.com/questions/148139/rules-for-selecting-convolutional-neural-network-hyperparameters
 
 RNNs:
+- Overview of RNNs http://karpathy.github.io/2015/05/21/rnn-effectiveness/
+- Wikipedia page contains the equations of LSTMs and peepholes https://en.wikipedia.org/wiki/Long_short-term_memory
+- LSTMs vs GRUs https://datascience.stackexchange.com/questions/14581/when-to-use-gru-over-lstm 
+- Worked example of LSTM http://blog.echen.me/2017/05/30/exploring-lstms/
