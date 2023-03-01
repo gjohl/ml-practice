@@ -240,10 +240,15 @@ H_t = (1 - z_t) * H_t-1 + z_t * H_candidate_t
 ```
 
 
-The sequences modelled with RNNS can be:
+The sequences modelled with RNNs can be:
 - One-to-many
 - Many-to-many
 - Many-to-one
+
+
+Considerations for choosing the input sequence length:
+- It should be long enough to capture any patterns or seasonality in the data
+- The validation set and test set each need to have a size at least (input_length + output_length), so the longer the input length, the more data is required to be set aside.
 
 
 ## A. Appendix
