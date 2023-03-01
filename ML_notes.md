@@ -251,6 +251,42 @@ Considerations for choosing the input sequence length:
 - The validation set and test set each need to have a size at least (input_length + output_length), so the longer the input length, the more data is required to be set aside.
 
 
+The validation loss for RNNs/LSTMs can be volatile, so allow a higher patience when using early stopping.
+
+
+Example model
+```python
+from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense,LSTM
+
+# Generators for helper functions to chunk up the input series into an array of pairs of (input_batch, target_output)
+train_generator = TimeseriesGenerator(scaled_train, scaled_train, length=batch_length, batch_size=1)
+validation_generator = TimeseriesGenerator(scaled_test, scaled_test, length=batch_length, batch_size=1)
+
+# Create an LSTM model
+model = Sequential()
+model.add(LSTM(100, activation='relu', input_shape=(batch_length, n_features)))
+model.add(Dense(1))  # Output layer
+model.compile(optimizer='adam', loss='mse')  # Problem setup for regression
+
+# Fit the model
+early_stop = EarlyStopping(monitor='val_loss', patience=10)  # RNNs can be volatile so if use a higher patience with an early stopping callback
+model.fit(train_generator, epochs=20, validation_data=validation_generator, callbacks=[early_stop])
+
+# Evaluate test data
+test_predictions = []
+final_batch = scaled_train[-batch_length:, :]
+current_batch = final_batch.reshape((1, batch_length, n_features))
+
+for test_val in scaled_test:
+    pred_val = model.predict(current_batch)  # These will later need to use the scaler.inverse_transform of the scaler originally used on the training data
+    test_predictions.append(pred_val[0])
+    current_batch = np.append(current_batch[:,1:,:], pred_val.reshape(1,1,1), axis=1)
+```
+
+
 ## A. Appendix
 ### A.1. Useful resources
 Neural networks:
