@@ -288,6 +288,24 @@ for test_val in scaled_test:
 
 
 #### 2.2.4 NLP
+A corpus of >1 million characters is a good size.
+
+Create a vocab list containing each of the unique characters ion the corpus.
+
+Create a shuffled dataset where:
+- input sequence is the first n characters
+- output sequence is n characters lagged by one
+
+The sequence length should be long enough to capture structure, e.g. for poetry with rhyming couplets it should be 
+the number of characters in 3 lines to capture the rhyme and non-rhyme. 
+Too long a sequence makes the model take longer to train.
+
+Model:
+- Embedding - Number of layers should be smaller but as similar scale to the vocab size; typically use the power of 2 
+  that is just smaller than the vocab size.
+- GRU - lots of layers, 1024
+- Dense layer - output layer per vocab character
+- Loss function - sparse categorical cross-entropy with logits=True because vocab input is one hot encoded.
 
 
 
