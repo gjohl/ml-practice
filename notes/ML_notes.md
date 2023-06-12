@@ -287,6 +287,17 @@ for test_val in scaled_test:
 ```
 
 
+#### 2.2.4 NLP
+
+
+
+#### 2.2.5 AutoEncoders
+
+
+
+#### 2.2.5 Generative Adversarial Networks (GANs)
+
+
 ## A. Appendix
 ### A.1. Useful resources
 Neural networks:
