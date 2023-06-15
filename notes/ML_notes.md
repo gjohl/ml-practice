@@ -288,25 +288,160 @@ for test_val in scaled_test:
 
 
 #### 2.2.4 NLP
-A corpus of >1 million characters is a good size.
+Character-based generative NLP: 
+given an input string, e.g. ['h', 'e', 'l', 'l'],
+predict the sequence shifted by one character, e.g. ['e', 'l', 'l', 'o']
 
-Create a vocab list containing each of the unique characters ion the corpus.
+The embedding, GRU and dense layers work on the sequence in the following way:
+![NLP_layers.png](images/ML_notes/NLP_layers.png)
+
+Steps:
+1. Read in text data
+2. Text processing and vectorisation - one-hot encoding
+3. Create batches
+4. Create the model
+5. Train the model
+6. Generate new text
+
+**Step 1: Read in text data**
+- A corpus of >1 million characters is a good size
+- The more distinct the style of your corpus, the more obvious it will be if your model has worked.
+
+Given some structured `input_text` string, we can get the one-hot encoded vocab list of unique characters.
+```python
+vocab_list = sorted(set(input_text))
+```
+
+**Step 2: Text processing**
+Vectorise the text - create a mapping between character and integer. 
+This is the encoding dictionary used to vectorise the corpus.
+ 
+```python
+# Mappings back and forth between characters and their encoded integers
+char_to_ind = {char: ind for ind, char in enumerate(vocab_list)}
+ind_to_char = {ind: char for ind, char in enumerate(vocab_list)}
+
+encoded_text = np.array([char_to_ind[char] for char in input_text])
+```
+
+
+**Step 3: Create batches**
+The sequence length should be long enough to capture structure, e.g. for poetry with rhyming couplets it should be 
+the number of characters in 3 lines to capture the rhyme and non-rhyme. 
+Too long a sequence makes the model take longer to train and captures too much historical noise.
 
 Create a shuffled dataset where:
 - input sequence is the first n characters
 - output sequence is n characters lagged by one
 
-The sequence length should be long enough to capture structure, e.g. for poetry with rhyming couplets it should be 
-the number of characters in 3 lines to capture the rhyme and non-rhyme. 
-Too long a sequence makes the model take longer to train.
+We want to shuffle these sequence pairs into a random order so the model doesn't overfit to any section of the text, 
+but can instead generate characters given any seed text.
 
-Model:
-- Embedding - Number of layers should be smaller but as similar scale to the vocab size; typically use the power of 2 
-  that is just smaller than the vocab size.
-- GRU - lots of layers, 1024
-- Dense layer - output layer per vocab character
-- Loss function - sparse categorical cross-entropy with logits=True because vocab input is one hot encoded.
+```python
+seq_len = 120
+total_num_seq = len(input_text) // (seq_len + 1)
 
+# Create Training Sequences
+char_dataset = tf.data.Dataset.from_tensor_slices(encoded_text)
+sequences = char_dataset.batch(seq_len + 1, drop_remainder=True)  # drop_remainder drops the last incomplete sequence
+
+# Create tuples of input and output sequences
+def create_seq_targets(seq):
+    input_seq = seq[:-1]
+    output_seq = seq[-1:]
+    return input_seq, output_seq
+dataset = sequences.map(create_seq_targets)
+
+# Generate training batches
+batch_size = 128
+buffer_size = 10000  # Shuffle this amount of batches rather than shuffling the entire dataset in memory
+dataset = dataset.shuffle(buffer_size).batch(batch_size, drop_remainder=True)
+```
+
+
+**Step 4: Create the model**
+Set up the loss function and layers.
+
+This model uses 3 layers:
+   1. Embedding
+      - Embed positive integers, e.g. "a"<->1, as dense vectors of fixed size. This embedding size is a hyperparameter for the user to decide.
+      - Number of layers should be smaller but a similar scale to the vocab size; typically use the power of 2 
+        that is just smaller than the vocab size.
+   2. GRU
+      - This is the main thing to vary in the model: 
+        number of hidden layers and number of neurons in each, types of neurons (RNN, LSTM, GRU), etc.
+        Typically use lots of layers here.
+   3. Dense 
+      - One neuron per character (one-hot encoded), so this produces a probability per character. 
+        The user can vary the "temperature", choosing less probable characters more/less often.
+
+
+Loss function: 
+- Sparse categorical cross-entropy 
+- Use *sparse* categorical cross-entropy because the classes are mutually exclusive. 
+  Use regular categorical cross-entropy when one smaple can have multiple classes, or the labels are soft probabilities.
+- See link in NLP appendix for discussion.
+- Use logits=True because vocab input is one hot encoded.
+
+
+
+```python
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Embedding, Dropout, GRU
+from tensorflow.keras.losses import sparse_categorical_crossentropy
+
+# Hyperparameters
+vocab_size = len(vocab_list)
+embed_dim = 64
+rnn_neurons = 1026
+
+# Create model 
+model = Sequential()
+model.add(Embedding(vocab_size, embed_dim, batch_input_shape=[batch_size, None]))
+model.add(GRU(rnn_neurons, return_sequences=True, stateful=True, recurrent_initializer='glorot_uniform'))
+model.add(Dense(vocab_size))
+sparse_cat_loss = lambda y_true,y_pred: sparse_categorical_crossentropy(y_true, y_pred, from_logits=True)  # We want a custom loss function with logits=True
+model.compile(optimizer='adam', loss=sparse_cat_loss) 
+```
+
+
+**Step 5: Train the model**
+```python
+epochs = 30
+model.fit(dataset,epochs=epochs)
+```
+
+**Step 6: Generate text**
+Allow the model to accept a batch size of 1 to allow us to give an input seed text from which to generate text from.
+
+We format the seed text so it can be fed into the network, 
+then loop through generating one character at a time and feeding that back into the model.
+
+```python
+model.build(tf.TensorShape([1, None]))
+
+def generate_text(model, input_seed_text, gen_size=100, temperature=1.0):
+    """
+    model: tensorflow.model
+    input_seed_text: str
+    gen_size: int
+    temperature: float
+    """
+    generated_text_result = []
+    vectorised_seed = tf.expand_dims([char_to_ind[s] for s in input_seed_text], 0)
+    model.reset_states()
+    
+    for k in range(gen_size):
+        raw_predictions = model(vectorised_seed)
+        predictions = tf.squeeze(raw_predictions, 0) / temperature
+        predicted_index = tf.random.categorical(predictions, num_samples=1)[-1,0].numpy()
+        generated_text_result.append(ind_to_char[predicted_index])
+        
+        # Set a new vectorised seed to generate the next character in the loop
+        vectorised_seed = tf.expand_dims([predicted_index], 0)
+        
+    return (input_seed_text + ''.join(generated_text_result))
+```
 
 
 #### 2.2.5 AutoEncoders
@@ -334,3 +469,7 @@ RNNs:
 - Wikipedia page contains the equations of LSTMs and peepholes https://en.wikipedia.org/wiki/Long_short-term_memory
 - LSTMs vs GRUs https://datascience.stackexchange.com/questions/14581/when-to-use-gru-over-lstm 
 - Worked example of LSTM http://blog.echen.me/2017/05/30/exploring-lstms/
+
+NLP:
+- The unreasonable effectiveness of RNNs, essay on RNNs applied to NLP http://karpathy.github.io/2015/05/21/rnn-effectiveness/
+- Sparse vs dense categorical crossentropy loss function https://datascience.stackexchange.com/questions/41921/sparse-categorical-crossentropy-vs-categorical-crossentropy-keras-accuracy

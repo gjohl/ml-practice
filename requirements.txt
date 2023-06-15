@@ -5,7 +5,11 @@ numpy
 pandas
 Pillow
 plotly
+pytorch
 scipy
 scikit-learn
 seaborn
 tensorflow
+torch
+torchvision
+torchaudio
