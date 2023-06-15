@@ -445,10 +445,97 @@ def generate_text(model, input_seed_text, gen_size=100, temperature=1.0):
 
 
 #### 2.2.5 AutoEncoders
+This is an unsupervised learning problem, therefore evaluation metrics are different.
+Sometimes called semi-supervised as labels may be used in training the model,
+but not available when it's used to predict new values.
+
+Applications:
+- Dimensionality reduction
+- Noise removal
+
+Designed to reproduce its input in the output layer. Number of input neurons is the same as the number of output layers.
+The encoder reduces dimensionality to the hidden layer.
+The hidden layer should contain the most relevant information required to reconstruct the input.
+The decoder reconstructs a high dimensional output from a low dimensional input.
+
+- Encoder: Input layer -> Hidden layer 
+- Decoder: Hidden layer -> Output
+
+Stacked autoencoders include multiple hidden layers.
 
 
+**Autoencoder for dimensionality reduction**
+Let's try to reduce an input dataset from 3 dimensions to 2.
+We want to train an autoencoder to go from 3 -> 2 -> 3.
 
-#### 2.2.5 Generative Adversarial Networks (GANs)
+When we scale data, we fit and transform on the entire dataset rather than a train/test split,
+because there is no ground truth for the "correct" dimensionality reduction.
+
+Using SGD in Autoencoders allows the learning rate to be varied as a hyperparameter to affect how well the hidden layer learns.
+Larger values will train quicker but potentially perform worse.
+
+To retrieve the lower dimensionality representation, use *just the encoder* half of the trained autoencoder to predict the input.
+
+
+```python
+# Scale data
+scaler = MinMaxScaler()
+scaled_data = scaler.fit_transform(input_features)
+
+# Create model
+encoder = Sequential()
+encoder.add(Dense(units=2, acivation='relu', input_shape=[3]))
+
+decoder = Sequential()
+decoder.add(Dense(units=3, acivation='relu', input_shape=[2]))
+
+autoencoder = Sequential([encoder, decoder])
+autoencoder.compile(loss='mse', optimizer=SGD(lr=1.5))
+
+# Train the full autoencoder model
+autoencoder.fit(scaled_data, scaled_data, epochs=5)
+
+# Reduce dimensionality by using just the encoder part of the trained model
+encoded_2dim = encoder.predict(scaled_data)
+```
+
+**Autoencoder for noise removal**
+Starting with clean images, we want to train an autoencoder to learn to remove noise.
+We create a noisy dataset by adding noise to our clean images. 
+We then try to reconstruct that input, and compare to the original clean images as the ground truth.
+
+Starting with 28x28 images (e.g. MNIST dataset), this gives 784 input features when flattened.
+Use multiple hidden layers as there are a large number of input features that would be difficult to learn in one layer.
+The numbers of layers and number of neurons in each are hyperparameters to tune; decreasing in powers of 2 is a good rule of thumb.
+
+Add a Gaussian noise layer to train the model to remove noise.
+Without the Gaussian layer, the model would be used for dimensionality reduction rather than noise removal.
+
+The final layer uses a sigmoid activation because it is a binary classification problem - does the output match the input?
+
+```python
+encoder = Sequential()
+encoder.add(Flatten(input_shape=[28, 28]))
+encoder.add(Gaussian(0.2))  # Optional layer if training for noise removal rather than dimensionality reduction
+encoder.add(Dense(400, activation='relu'))
+encoder.add(Dense(200, activation='relu'))
+encoder.add(Dense(100, activation='relu'))
+encoder.add(Dense(50, activation='relu'))
+encoder.add(Dense(25, activation='relu'))
+
+decoder = Sequential()
+decoder.add(Dense(50, input_shape=[25], activation='relu'))
+decoder.add(Dense(100, activation='relu'))
+decoder.add(Dense(200, activation='relu'))
+decoder.add(Dense(400, activation='relu'))
+decoder.add(Dense(28*28, activation='sigmoid'))
+
+autoencoder = Sequential([encoder, decoder])
+autoencoder.compile(loss='binary_crossentropy', optimizer=SGD(lr=1.5), metrics=['accuracy'])
+autoencoder.fit(X_train, X_train, epochs=5)
+```
+
+#### 2.2.6 Generative Adversarial Networks (GANs)
 
 
 ## A. Appendix
