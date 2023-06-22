@@ -535,7 +535,89 @@ autoencoder.compile(loss='binary_crossentropy', optimizer=SGD(lr=1.5), metrics=[
 autoencoder.fit(X_train, X_train, epochs=5)
 ```
 
+
 #### 2.2.6 Generative Adversarial Networks (GANs)
+Use 2 networks competing against each other to generate data - counterfeiter (generator) vs detective (discriminator).
+- Generator: recieves random noise
+- Discriminator: receives data set containing real data and fake generated data, and attempts to calssify real vs fake (binary classificaiton).
+
+
+Two training phases, each only training one of the networks:
+1. Train discriminator - real images (labeled 1) and generated images (labeled 0) are fed to the discriminator network.
+2. Train generator - only feed generated images to discriminator, ALL labeled 1.
+
+The generator never sees real images, it creates images based only off of the gradients flowing back from the discriminator.
+
+
+Difficulties with GANs:
+1. Training resources - GPUs generally required
+2. Mode collapse - generator learns an image that fools the discriminator, then only produces this image. Deep convolutional GANs and mini-batch discrimination are two solution to this problem.
+3. Instability - True performance is hard to measure; just because the discriminator was fooled, it doesn't mean that the generated image was actually realistic.
+
+
+**Creating the model**
+We create the generator and discriminator as separate models, then join them into a GAN object. 
+This is analogous to how we joined an encoder and decoder into an autoencoder.
+
+The discriminator is trained on a binary classification problem, real or fake, so uses a binary cross entropy loss function.
+Backpropagation only alters the weights of the discriminator in the first phase, not the generator.
+
+```python
+discriminator = Sequential()
+
+# Flatten the image
+discriminator.add(Flatten(input_shape=[28,28]))
+
+# Some hidden layers
+discriminator.add(Dense(150,activation='relu'))
+discriminator.add(Dense(100,activation='relu'))
+
+# Binary classification - real vs fake
+discriminator.add(Dense(1,activation="sigmoid"))
+discriminator.compile(loss="binary_crossentropy", optimizer="adam")
+```
+
+The generator is trained in the second phase.
+
+We set a codings_size, which is the size of the latent representation from which the generator will create a full image.
+For example, if we want to create a 28x28 image (784 pixels), we may want to generate this from a 100 element input.
+This is analogous to the decoder part of an autoencoder.
+
+The codings_size should be smaller than the total number of features but large enough so that there is something to learn from.
+
+The generator is NOT compiled at this step, it is compiled in the combined GAN later so that it is only trained at that step.
+```python
+codings_size = 100
+generator = Sequential()
+
+# Input shape of first layer is the codings_size
+generator.add(Dense(150, activation="relu", input_shape=[codings_size]))
+
+# Some hidden layers
+generator.add(Dense(200,activation='relu'))
+
+# Output is the size of the image we want to create
+generator.add(Dense(784, activation="sigmoid"))
+generator.add(Reshape([28,28]))
+```
+
+
+The GAN combines the generator and discriminator.
+
+The discriminator is only trained in the first phase, not the second phase.
+```python
+GAN = Sequential([generator, discriminator])
+discriminator.trainable = False
+GAN.compile(loss="binary_crossentropy", optimizer="adam")
+```
+
+
+**Training the model**
+
+
+
+**Deep convolutional GANs**
+
 
 
 ## A. Appendix
