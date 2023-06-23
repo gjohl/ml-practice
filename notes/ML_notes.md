@@ -627,6 +627,7 @@ batched_dataset = raw_dataset.batch(batch_size, drop_remainder=True).prefetch(1)
 The training loop for each epoch trains the discriminator to distinguish real vs fake images (binary classification).
 Then it trains the generator to generate fake images using ONLY the gradients learned in the discriminator training step; 
 the generator NEVER sees any real images. 
+
 ```python
 generator, discriminator = GAN.layers
 
@@ -640,7 +641,7 @@ for epoch in range(epochs):
         y_train_discriminator = tf.constant([[0.]] * batch_size + [[1.]] * batch_size)  # Targets set to zero for fake images and 1 for real images
         discriminator.trainable = True
         discriminator.train_on_batch(X_train_discriminator, y_train_discriminator)
-        
+
         # Phase 2: Train the generator
         noise = tf.random.normal(shape=[batch_size, codings_size])
         y_train_generator = tf.constant([[1.]] * batch_size)  # We want discriminator to believe that fake images are real
@@ -650,7 +651,15 @@ for epoch in range(epochs):
 
 
 **Deep convolutional GANs**
+These are GANs which use convolutional layers inside the discriminator and generator models.
 
+The models are almost identical to the models above, just with additional Conv2D, Conv2DTranspose and BatchNormalization layers. 
+
+Changes compared to regular GANs:
+- Additional convolutional layers in model. 
+- Reshape the training set to match the images.
+- Rescale the training data to be between -1 and 1 so that tanh activation function works.
+- Activation of discriminator output layer is tanh rather than sigmoid.
 
 
 ## A. Appendix
