@@ -130,5 +130,91 @@ NoSQL - huge, unstructured or semi-structured data
 - No universal querying language
 
 
-# 7. The *-ilities
+## 7. The *-ilities
 Quality attributes that describe technical capabilities to fulfill the non-functional requirements.
+Non-functional requirements map to quality attributes, which are designed in the architecture.
+
+- Scalability - Adding computing resources without any interruption. 
+Scale out (add more compute instances) is preferred over scale up (increase CPU, RAM on the existing instance).
+Scaling out introduces redundancy and is not limited by hardware.
+- Manageability - Know what's going on and take action accordingly.
+The question "who reports the problems" determines if a system is manageable. The system should flag problems, not the suer. 
+- Modularity - A system that is built from blcoks that can be changed or replaced without affecting the whole system.
+- Extensibility - Functionality of the system can be extended without modifying existing code. 
+- Testability - How easy is it to test the application. Independent modules and methods and single responsibility principle aid testability.
+
+
+## 8.Components architecture
+A software component is a piece of code that runs in a single process.
+Distributed systems are composed of independent software components deployed on separate processes/servers/containers.
+
+Component architecture relates to the lower level details, whereas system architecture is the higher level view of how the components
+fit together to achieve the non-functional requirements.
+
+
+### 8.1. Layers
+Layers represent horizontal functionality:
+1. UI/SI - user interface or service interface (i.e. an API), authentication
+2. Business logic - validation, enrichment, computation
+3. Data access layer - connection handling, transaction handling, querying/saving data
+
+
+Code can flow downwards by one layer only. It can never skip a layer and can never go up a layer.
+This enforces modularity.
+
+Each layer should be independent of the implementation of other layers.
+Layers should handle exceptions from those below them, log the error and then throw a more generic exception, so that 
+there is no reference to other layers' implementation.
+
+
+Layers are part of the same process. This is different from tiers, which are processes that are distributed across a network.
+
+
+### 8.2. Interfaces
+An interface declares the signature of an implementation. This means that each implementation must implement the methods described.
+The abstract base class in Python is an example of this.
+
+Close coupling should be avoided; "new is glue".
+
+
+### 8.3. SOLID
+1. Single responsibility principle: Each class, module or method should have exactly one responsibility. 
+2. Open/closed principle: Software should be open for extension but closed for modification. Can be implemented using class inheritance.
+3. Liskov substitution principle: If S is a subtype of T, then objects of type T can be replaced with objects of type S without altering the program.
+This looks similar to polymorphism but is stricter; not only should the classes implement the same methods, but the behaviour of those methods
+should be the same too, there should be no hidden functionality performed by S that is not performed by T or vice versa.
+4. Interface segregation principle: Many client-specific interfaces are preferable to one general purpose interface.
+5. Dependency inversion principle: High-level modules should depend on abstractions rather than concrete implementations.
+Relies on dependency injection, where one object supplies the dependencies of another object.
+A factory method determines which class to load and returns an instance of that class.
+This also makes testing easier, as you can inject a mock class rather than having to mock out specific functionality.
+
+
+### 8.4. Naming conventions
+1. Structure - case, underscores
+2. Content - class names should be nouns, methods should be imperative verbs
+
+
+### 8.5. Exception handling
+Some best practices:
+1. Only catch exceptions if you are going to do something with it
+2. Catch specific exceptions
+3. Use try-catch on the smallest code fragments possible
+4. Layers should handle exceptions raised by layers below them, without exposing the specific implementation of the other layer.
+Catch, log, re-raise a more generic error.
+
+Purposes of logging:
+1. Track errors
+2. Gather data
+
+
+## 9. Design patterns
+
+
+## 10. System architecture
+
+
+## 11. External considerations
+
+
+## 12. Architecture
