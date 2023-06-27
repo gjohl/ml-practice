@@ -240,6 +240,64 @@ External considerations can affect architecture and design decisions.
 
 
 ## 13. Advanced architecture topics
+These architecture patterns solve specific problems but add complexity to the system, so the costs and benefits should be compared.
+
+### 13.1. Microservices 
+An architecture in which functionalities are implemented as separate, loosely coupled services that interact with each other using a standard lightweight protocol.
+
+Problems with monolithic services:
+- A single exception can crash the whole process
+- Updates impact all components
+- Limited to one development platform/language
+- Unoptimised compute resources
+ 
+With microservices, each service is independent of others so can be updated separately, use a different platform, and be optimised separately.
+
+An example of splitting a monolithic architecture into microservices:
+![img.png](images/software_architect/monolith_example.png)
+
+![img.png](images/software_architect/microservice_example.png)
+
+
+Problems with microservices:
+- Complex monitoring of all services and their interactions
+- Complex architecture
+- Complex testing
+
+
+### 13.2. Event sourcing
+Storing the deltas to each entity rather than updating it.
+The events can then be "rebuilt" from the start to give a view of the state at any given point in time.
+
+Use when history matters.
+
+![img.png](images/software_architect/event_sourcing.png)
+
+Pros:
+- Tracing history
+- Simple data model
+- Performance
+- Reporting
+
+Cons:
+- No unified view - need to rebuild all events from the start to see the current state
+- Storage usage
+
+
+### 13.3. CQRS
+Command query responsibility segregation.
+Data storage and data retrieval are two separate databases, with a sync service between the two.
+
+This integrates nicely with event sourcing, where events (deltas) are stored in one database and the 
+current state is periodically built and stored in the retrieval database.
+
+![img.png](images/software_architect/cqrs.png)
+
+Pros:
+- Useful with high-frequency updates that require near real-time querying
+
+Cons:
+- Complexity - need 2 databases, a sync service, ETL between the storage and retrieval database
 
 
 ## 14. Soft skills
