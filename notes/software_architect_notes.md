@@ -105,7 +105,7 @@ Considerations:
 Covers web app, web API, console, service.
 
 Options: .NET, JAva, node.js, PHP, Python
-![img.png](images/software_architect/backend_tech.png)
+![backend_tech.png](images/software_architect/backend_tech.png)
 
 ### 6.2. Frontend technology
 Covers:
@@ -225,6 +225,123 @@ The facade does not create any new functionality, it is just a wrapper integrati
 
 
 ## 10. System architecture
+The architecture design is the big picture that should answer the following:
+- How will the system work under heavy load?
+- What will happen if the system crashes at a critical moment?
+- How complicated is it to update?
+
+The architecture should:
+1. Define components
+2. Define how components communicate
+3. Define the system's quality attributes
+
+
+### 10.1. Loose coupling
+Ensuring the services are not strongly tied to other services.
+Avoid the "spiderweb" - when the graph of connections between services is densely connected.
+
+Prevents coupling of platforms and URLs.
+
+To avoid URL coupling between services, two options are:
+- "Yellow pages" directory
+- Gateway
+
+The "yellow pages" contains a directory of all service URLs. 
+If service A wants to query service D, A queries the yellow pages for D's URL, then uses that URL to query D.
+This means that service A does not hardcode any information about service D.
+If D's URLs change, then only the yellow pages need to be updated.
+Services only need to know the yellow pages directory's URL.
+![yellow_pages.png](images/software_architect/yellow_pages.png)
+
+The gateway acts as a middleman. It holds a mapping table of all URLs 
+Service A queries the gateway, which in turn queries service E.
+Service A doesn't need to know about E or any other services.
+Services only need to know the gateway's URL.
+![gateway.png](images/software_architect/gateway.png)
+
+
+### 10.2. Stateless
+The application's state is stored in only 2 places:
+1. The data store
+2. The user interface
+
+Stateless architecture is preferred in virtually all circumstances.
+
+In a stateful architecture, when a user logs in, the login service retrieves the user details from the database and
+stored them for future use. Data is stored in code.
+
+If the login request was routed to server A, the user's details are stored there.
+If the user later tried to add itemsto the cart and their cart service request is routed
+to server B, then their user details will not exist as those are stored on server A.
+
+Disadvantages of stateful:
+- Lack of scalability
+- Lack of redundancy
+![stateful.png](images/software_architect/stateful.png)
+
+
+In a stateless architecture, no data is stored in the service itself.
+This means the behaviour will be the same regardless of which server a request was routed to.
+![img.png](images/software_architect/stateless.png)
+
+
+### 10.3. Caching
+Caches store data locally to avoid retrieving the same data from the database multiple times.
+It trades reliability of data (it is stored in volatile memory) for improved performance.
+
+A cache should store data that is frequently accessed and rarely modified.
+
+Two types of cache:
+- In-memory cache - Cache stored in memory on a single service
+  - Pros:
+    - Best performance
+    - Can store any objects
+    - Easy to use
+  - Cons:
+    - Size is limited by the process's memory
+    - Can grow stale/inconsistent if the service is scaled out to multiple servers 
+- Distributed cache - Cache is independent of the services and can be accessed by all servers
+  - Pros:
+    - Supports scaled out servers
+    - Failover capabilities
+    - Storage is unlimited
+  - Cons:
+    - Setup is more complex
+    - Often only support primitive data types
+    - Worse performance than in-memory cache
+
+
+### 10.4. Messaging
+Messaging criteria:
+- Performance
+- Message size
+- Execution model
+- Feedback (handshaking) and reliability
+- Complexity
+
+REST API
+Universal standard for HTTP-based systems.
+Useful for traditional web apps.
+
+| Criteria | Evaluation                                              |
+| --- |---------------------------------------------------------|
+| Performance | Very fast                                               |
+| Message size | Same as HTTP protocol limitations - GET 8KB, POST ~10MB |
+| Execution model | Request/response - ideal for quick, short actions       |
+| Feedback | Immediate feedback via response codes                   |
+| Complexity | Extremely easy                                          |
+
+
+HTTP Push
+
+
+Queue
+
+
+File- and DB-based
+
+
+### 10.5. Logging and monitoring
 
 
 ## 11. External considerations
@@ -254,9 +371,9 @@ Problems with monolithic services:
 With microservices, each service is independent of others so can be updated separately, use a different platform, and be optimised separately.
 
 An example of splitting a monolithic architecture into microservices:
-![img.png](images/software_architect/monolith_example.png)
+![monolith_example.png](images/software_architect/monolith_example.png)
 
-![img.png](images/software_architect/microservice_example.png)
+![microservice_example.png](images/software_architect/microservice_example.png)
 
 
 Problems with microservices:
@@ -271,7 +388,7 @@ The events can then be "rebuilt" from the start to give a view of the state at a
 
 Use when history matters.
 
-![img.png](images/software_architect/event_sourcing.png)
+![event_sourcing.png](images/software_architect/event_sourcing.png)
 
 Pros:
 - Tracing history
@@ -291,7 +408,7 @@ Data storage and data retrieval are two separate databases, with a sync service 
 This integrates nicely with event sourcing, where events (deltas) are stored in one database and the 
 current state is periodically built and stored in the retrieval database.
 
-![img.png](images/software_architect/cqrs.png)
+![cqrs.png](images/software_architect/cqrs.png)
 
 Pros:
 - Useful with high-frequency updates that require near real-time querying
