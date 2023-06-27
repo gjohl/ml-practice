@@ -209,12 +209,49 @@ Purposes of logging:
 
 
 ## 9. Design patterns
+A collection of general, reusable solutions to common software design problems.
+Popularised in the book "Design patterns: elements of reusable object-oriented software".
+
+- The factory pattern: Creating objects without specifying the exact class of the object.
+Avoids strong coupling between classes. 
+Create an interface, then a factory method returns an instance of a class which implements that interface.
+If the implementation needs to change, we only need to change the factory method.
+- The repository pattern: Modules which don't work with the data store should be oblivious to the type of data store.
+This is similar to the concept of the Data Access Layer. Layers are for architects, design patterns are for developers.
+They both seek to solve the same issue.
+- The facade pattern: Creating a layer of abstraction to mask complex actions.
+The facade does not create any new functionality, it is just a wrapper integrating existing modular functions together.
+- The command pattern: All the action's information is encapsulated within an object. 
 
 
 ## 10. System architecture
 
 
 ## 11. External considerations
+External considerations can affect architecture and design decisions.
+
+- Deadlines
+- Dev team skills - New technologies can introduce uncertainty, delays and low quality
+- IT support - Assign who will support the product from the outset. This should not be developers. 
+- Cost - Build vs buy. Estimate cost vs value. Spend money to save time, don't spend time to save money.
 
 
-## 12. Architecture
+## 12. Architecture document
+
+
+## 13. Advanced architecture topics
+
+
+## 14. Soft skills
+The architect is often not the direct line manager of the developers implementing the software.
+You ultimately work with people, not software.
+**Influence without authority** is key.
+
+- Listening - assume you are not the smartest person in the room, collective wisdom is always better.
+- Dealing with criticism
+  - Genuine questioning: Provide facts and logic, be willing to go back and check again
+  - Mocking: Don't attack back, provide facts and logic.
+- Be smart not right
+- Organisational politics - be aware of it but don't engage in it
+- Public speaking - define a goal, know your audience, be confident, don't read, maintain eye contact
+- Learning - blogs (DZone, InfoQ, O'Reilly), articles, conferences
