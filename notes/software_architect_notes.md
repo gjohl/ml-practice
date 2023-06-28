@@ -235,6 +235,7 @@ The architecture should:
 2. Define how components communicate
 3. Define the system's quality attributes
 
+Make the correct choice as early as possible
 
 ### 10.1. Loose coupling
 Ensuring the services are not strongly tied to other services.
@@ -312,16 +313,27 @@ Two types of cache:
 
 
 ### 10.4. Messaging
-Messaging criteria:
+Messaging methods can be evaluated on these criteria:
 - Performance
 - Message size
 - Execution model
 - Feedback (handshaking) and reliability
 - Complexity
 
-REST API
+Messaging methods include:
+- REST API
+- HTTP Push
+- Queue
+- File-based and database-based methods
+
+
+#### REST API
+
 Universal standard for HTTP-based systems.
+
 Useful for traditional web apps.
+
+![rest_api.png](images/software_architect/rest_api.png)
 
 | Criteria | Evaluation                                              |
 | --- |---------------------------------------------------------|
@@ -332,16 +344,84 @@ Useful for traditional web apps.
 | Complexity | Extremely easy                                          |
 
 
-HTTP Push
+#### HTTP Push
+
+A client subscribes to the service waiting for an event. 
+When that event occurs, the server notifies the client.
+
+For real-time messaging, these often use web sockets to maintain the subscription connection,
+rather than a traditional request/response model.
+
+Useful for chat or monitoring.
+
+![http_push.png](images/software_architect/http_push.png)
+
+| Criteria | Evaluation                           |
+| --- |--------------------------------------|
+| Performance | Very fast                            |
+| Message size | Limited, few KB                      |
+| Execution model | Web socket connection / long polling |
+| Feedback | None (fire and forget)               |
+| Complexity | Extremely easy                       |
 
 
-Queue
+#### Queue
+
+The queue sits between two (or more) services.
+If service A wants to send a message to service B, A places the message in the queue
+and B periodically pulls from the queue.
+
+This ensures messages will be handled **exactly** once and in the order received.
+
+Useful for complex systems with lots of data, when order and reliability are important.
+
+![queue.png](images/software_architect/queue.png)
+
+| Criteria | Evaluation                                                                                                             |
+| --- |------------------------------------------------------------------------------------------------------------------------|
+| Performance | Slow - push/poll time and database persistence                                                                         |
+| Message size | Unlimited but best practice to use small messages                                                                      |
+| Execution model | Polling                                                                                                                |
+| Feedback | Very reliable but feedback depends on the monitoring in place to ensure messages make it to the queue and get executed |
+| Complexity | Requires training and setup to maintain a queue engine                                                                 |
 
 
-File- and DB-based
+#### File-based and DB-based
+
+Similar to queue, but rather han placing messages in a queue it places them in a file directory or database.
+There is no guarantee that messages are processed once and only once.
+
+If multiple services are polling the same file folder, then when a new file is added we can get two issues:
+1. File locked
+2. Duplicate processing
+
+Similar use case to queues, but queues are generally preferred.
+
+![file_based_messaging.png](images/software_architect/file_based_messaging.png)
+
+| Criteria | Evaluation                                                        |
+| --- |-------------------------------------------------------------------|
+| Performance | Slow - push/poll time and database persistence                    |
+| Message size | Unlimited                                                         |
+| Execution model | Polling                                                           |
+| Feedback | Very reliable but feedback depends on the monitoring              |
+| Complexity | Requires training and setup to maintain the filestore or database |
 
 
 ### 10.5. Logging and monitoring
+#### Central logging service
+Create a central logging service that all other services call to write to a central database.
+This solves the problem where each microservice has its own log format, data and location. 
+For example, some might be in files, SQL database, NoSQL database, etc.
+
+Implementation can be via an API or polling folders that each of the services write to.
+
+![central_logging_service.png](images/software_architect/central_logging_service.png)
+
+
+#### Correlation ID
+Correlation ID is an identifier attached to the beginning of a user flow and is attached to any action taken by that user,
+so that if there is an error at any point the user flow can be traced back through the different services' logs. 
 
 
 ## 11. External considerations
@@ -430,3 +510,8 @@ You ultimately work with people, not software.
 - Organisational politics - be aware of it but don't engage in it
 - Public speaking - define a goal, know your audience, be confident, don't read, maintain eye contact
 - Learning - blogs (DZone, InfoQ, O'Reilly), articles, conferences
+
+
+## References
+- Udemy course https://www.udemy.com/course/the-complete-guide-to-becoming-a-software-architect/
+- Design pattern https://refactoring.guru/
