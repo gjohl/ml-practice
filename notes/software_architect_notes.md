@@ -434,6 +434,90 @@ External considerations can affect architecture and design decisions.
 
 
 ## 12. Architecture document
+This should describe the basic elements of the system:
+- Technology stack
+- Components
+- Services
+- Communication between components and services
+
+No development should begin before the document is complete.
+
+Goals of the document:
+- Describe what should be developed and how
+- List the functional and non-functional requirements
+
+Audience:
+- Everyone involved with the system: project manager, CTO, QA leader, developers
+- Sections for management appear first as they are unlikely to read the whole document
+- QA lead can begin preparing test infrastructure ahead of time
+
+Format:
+UML (universal modeling language) is often used. It visualises the system's design with concepts and diagrams.
+However, this assumes the audience is familiar with UML which is often not the case.
+
+- Keep the contents as simple as possible
+- Use plain English
+- Visualise using whatever software is comfortable and appropriate
+
+### 10.1 Structure
+- Background
+- Requirements
+- Executive summary
+- Architecture overview
+- Components drill-down
+
+#### Background
+This section validates your point of view and instils confidence that you understand the project.
+
+One page for all team and management.
+
+Describe the system from a business POV:
+- The system's role
+- Reasons for replacing the old system
+- Expected business impact
+
+##### Requirements
+Functional and non-functional requirements - what should the system do and deal with?
+This section validates your understadning of the requirements. The requirements dictate the architecture so this
+section sets the scene for the chosen architecture.
+
+One page for all team and management.
+
+This should be a brief, bullet point list of requirements with no more than 3 lines on each.
+
+#### Executive summary
+Provide a high-level view of the architecture.
+
+Managers will not read the whole document; <3 pages for management.
+
+- Use charts and diagrams
+- Write this after the rest of the document
+- Use technical terms sparsely and only well known ones
+- Be concise and don't repeat yourself
+
+#### Architecture overview
+Provide a high-level view of the architecture in technical terms.
+Do not deep dive into specific components
+
+<10 pages for developers and QA lead.
+
+- General description: type and major non-functional requirements
+- High-level diagram of logical components, no specifics about hardware or technologies
+- Diagram walkthrough: describe the various parts and their roles
+- Technology stack: iff there is a single stack include it here, otherwise include it in the components drill down section
+
+#### Components drill down
+Detailed description of each component.
+
+Unlimited length, for developers and QA lead.
+
+For each component:
+- Component's role
+- Technology stack: Data store, backend, frontend
+- Component's architecture: Describe the API (URL, logic, response code, comments. Describe the layers. Mention design patters here.
+- Development instructions: Specific development guidelines
+ 
+Be specific and include rationale behind decisions.
 
 
 ## 13. Advanced architecture topics
