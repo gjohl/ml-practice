@@ -162,6 +162,11 @@ Layers represent horizontal functionality:
 Code can flow downwards by one layer only. It can never skip a layer and can never go up a layer.
 This enforces modularity.
 
+
+A service might sit across layers, for example logging sits across the 3 layers described above. 
+In this case, the logging service is called a "sross-cutting concern".
+
+
 Each layer should be independent of the implementation of other layers.
 Layers should handle exceptions from those below them, log the error and then throw a more generic exception, so that 
 there is no reference to other layers' implementation.
@@ -459,7 +464,7 @@ However, this assumes the audience is familiar with UML which is often not the c
 - Use plain English
 - Visualise using whatever software is comfortable and appropriate
 
-### 10.1 Structure
+Structure:
 - Background
 - Requirements
 - Executive summary
@@ -514,7 +519,7 @@ Unlimited length, for developers and QA lead.
 For each component:
 - Component's role
 - Technology stack: Data store, backend, frontend
-- Component's architecture: Describe the API (URL, logic, response code, comments. Describe the layers. Mention design patters here.
+- Component's architecture: Describe the API (URL, logic, response code, comments). Describe the layers. Mention design patterns here.
 - Development instructions: Specific development guidelines
  
 Be specific and include rationale behind decisions.
@@ -589,7 +594,7 @@ You ultimately work with people, not software.
 - Listening - assume you are not the smartest person in the room, collective wisdom is always better.
 - Dealing with criticism
   - Genuine questioning: Provide facts and logic, be willing to go back and check again
-  - Mocking: Don't attack back, provide facts and logic.
+  - Mocking: Don't attack back, provide facts and logic
 - Be smart not right
 - Organisational politics - be aware of it but don't engage in it
 - Public speaking - define a goal, know your audience, be confident, don't read, maintain eye contact
@@ -598,4 +603,4 @@ You ultimately work with people, not software.
 
 ## References
 - Udemy course https://www.udemy.com/course/the-complete-guide-to-becoming-a-software-architect/
-- Design pattern https://refactoring.guru/
+- Design patterns https://refactoring.guru/
