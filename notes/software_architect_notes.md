@@ -151,36 +151,29 @@ Distributed systems are composed of independent software components deployed on 
 Component architecture relates to the lower level details, whereas system architecture is the higher level view of how the components
 fit together to achieve the non-functional requirements.
 
-
 ### 8.1. Layers
 Layers represent horizontal functionality:
 1. UI/SI - user interface or service interface (i.e. an API), authentication
 2. Business logic - validation, enrichment, computation
 3. Data access layer - connection handling, transaction handling, querying/saving data
 
-
 Code can flow downwards by one layer only. It can never skip a layer and can never go up a layer.
 This enforces modularity.
 
-
 A service might sit across layers, for example logging sits across the 3 layers described above. 
 In this case, the logging service is called a "sross-cutting concern".
-
 
 Each layer should be independent of the implementation of other layers.
 Layers should handle exceptions from those below them, log the error and then throw a more generic exception, so that 
 there is no reference to other layers' implementation.
 
-
 Layers are part of the same process. This is different from tiers, which are processes that are distributed across a network.
-
 
 ### 8.2. Interfaces
 An interface declares the signature of an implementation. This means that each implementation must implement the methods described.
 The abstract base class in Python is an example of this.
 
 Close coupling should be avoided; "new is glue".
-
 
 ### 8.3. SOLID
 1. Single responsibility principle: Each class, module or method should have exactly one responsibility. 
@@ -194,11 +187,9 @@ Relies on dependency injection, where one object supplies the dependencies of an
 A factory method determines which class to load and returns an instance of that class.
 This also makes testing easier, as you can inject a mock class rather than having to mock out specific functionality.
 
-
 ### 8.4. Naming conventions
 1. Structure - case, underscores
 2. Content - class names should be nouns, methods should be imperative verbs
-
 
 ### 8.5. Exception handling
 Some best practices:
@@ -265,7 +256,6 @@ Service A doesn't need to know about E or any other services.
 Services only need to know the gateway's URL.
 ![gateway.png](images/software_architect/gateway.png)
 
-
 ### 10.2. Stateless
 The application's state is stored in only 2 places:
 1. The data store
@@ -285,11 +275,9 @@ Disadvantages of stateful:
 - Lack of redundancy
 ![stateful.png](images/software_architect/stateful.png)
 
-
 In a stateless architecture, no data is stored in the service itself.
 This means the behaviour will be the same regardless of which server a request was routed to.
 ![img.png](images/software_architect/stateless.png)
-
 
 ### 10.3. Caching
 Caches store data locally to avoid retrieving the same data from the database multiple times.
@@ -316,7 +304,6 @@ Two types of cache:
     - Often only support primitive data types
     - Worse performance than in-memory cache
 
-
 ### 10.4. Messaging
 Messaging methods can be evaluated on these criteria:
 - Performance
@@ -330,7 +317,6 @@ Messaging methods include:
 - HTTP Push
 - Queue
 - File-based and database-based methods
-
 
 #### REST API
 
@@ -348,9 +334,7 @@ Useful for traditional web apps.
 | Feedback | Immediate feedback via response codes                   |
 | Complexity | Extremely easy                                          |
 
-
 #### HTTP Push
-
 A client subscribes to the service waiting for an event. 
 When that event occurs, the server notifies the client.
 
@@ -369,9 +353,7 @@ Useful for chat or monitoring.
 | Feedback | None (fire and forget)               |
 | Complexity | Extremely easy                       |
 
-
 #### Queue
-
 The queue sits between two (or more) services.
 If service A wants to send a message to service B, A places the message in the queue
 and B periodically pulls from the queue.
@@ -390,9 +372,7 @@ Useful for complex systems with lots of data, when order and reliability are imp
 | Feedback | Very reliable but feedback depends on the monitoring in place to ensure messages make it to the queue and get executed |
 | Complexity | Requires training and setup to maintain a queue engine                                                                 |
 
-
 #### File-based and DB-based
-
 Similar to queue, but rather han placing messages in a queue it places them in a file directory or database.
 There is no guarantee that messages are processed once and only once.
 
@@ -412,7 +392,6 @@ Similar use case to queues, but queues are generally preferred.
 | Feedback | Very reliable but feedback depends on the monitoring              |
 | Complexity | Requires training and setup to maintain the filestore or database |
 
-
 ### 10.5. Logging and monitoring
 #### Central logging service
 Create a central logging service that all other services call to write to a central database.
@@ -423,7 +402,6 @@ Implementation can be via an API or polling folders that each of the services wr
 
 ![central_logging_service.png](images/software_architect/central_logging_service.png)
 
-
 #### Correlation ID
 Correlation ID is an identifier attached to the beginning of a user flow and is attached to any action taken by that user,
 so that if there is an error at any point the user flow can be traced back through the different services' logs. 
@@ -431,7 +409,6 @@ so that if there is an error at any point the user flow can be traced back throu
 
 ## 11. External considerations
 External considerations can affect architecture and design decisions.
-
 - Deadlines
 - Dev team skills - New technologies can introduce uncertainty, delays and low quality
 - IT support - Assign who will support the product from the outset. This should not be developers. 
