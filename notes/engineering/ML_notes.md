@@ -130,7 +130,7 @@ model = Sequential()
 model.add(Conv2D(filters=32, kernel_size=(4,4),input_shape=(28, 28, 1), activation='relu',))  # Input shape determined by input data size
 model.add(MaxPool2D(pool_size=(2, 2)))
 
-# Flatten images from 2D to 1D before final layer
+# Flatten _images from 2D to 1D before final layer
 model.add(Flatten())
 
 # Dense hidden layer
@@ -293,7 +293,7 @@ given an input string, e.g. ['h', 'e', 'l', 'l'],
 predict the sequence shifted by one character, e.g. ['e', 'l', 'l', 'o']
 
 The embedding, GRU and dense layers work on the sequence in the following way:
-![NLP_layers.png](images/ML_notes/NLP_layers.png)
+![NLP_layers.png](../_images/ML_notes/NLP_layers.png)
 
 Steps:
 1. Read in text data
@@ -638,13 +638,13 @@ for epoch in range(epochs):
         generated_images = generator(noise)
         real_images = tf.dtypes.cast(X_batch,tf.float32)
         X_train_discriminator = tf.concat([generated_images, real_images], axis=0)
-        y_train_discriminator = tf.constant([[0.]] * batch_size + [[1.]] * batch_size)  # Targets set to zero for fake images and 1 for real images
+        y_train_discriminator = tf.constant([[0.]] * batch_size + [[1.]] * batch_size)  # Targets set to zero for fake _images and 1 for real _images
         discriminator.trainable = True
         discriminator.train_on_batch(X_train_discriminator, y_train_discriminator)
 
         # Phase 2: Train the generator
         noise = tf.random.normal(shape=[batch_size, codings_size])
-        y_train_generator = tf.constant([[1.]] * batch_size)  # We want discriminator to believe that fake images are real
+        y_train_generator = tf.constant([[1.]] * batch_size)  # We want discriminator to believe that fake _images are real
         discriminator.trainable = False
         GAN.train_on_batch(noise, y_train_generator)    
 ```

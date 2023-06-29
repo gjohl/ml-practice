@@ -116,7 +116,7 @@ An app that lets a user add and delete items from a todo list.
   - There are two databases, one per service, which is an example of functional partitioning. 
     This means todo service I/O does not interfere with user service I/O and vice versa.
 
-![img.png](images/system_design/design_todo_app.png)
+![img.png](../_images/system_design/design_todo_app.png)
 
 ### 7.2. URL shorteners
 Take an input URL and return a unique, shortened URL that redirects to the original.
