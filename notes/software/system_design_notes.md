@@ -27,7 +27,7 @@ What the system should handle.
 > - Identify the nonfunctional requirements the interviewer cares most about
 > - Show awareness of system attributes, trade-offs and user experience
 
-Considerations:
+System analysis:
 - Read or write heavy?
   - Impacts requirements for database scaling, redundancy of services, effectiveness of caching.
   - System priorities - is it worse if the system fails to read or to write?
@@ -54,11 +54,11 @@ Non-functional requirements:
   - Experienced latency = network latency + system latency
   - Database and data model choices affect latency
   - Caching can be effective
-- Compatibility - Ability of a system to operate seamlessly with othe software, hardware and systems
+- Compatibility - Ability of a system to operate seamlessly with other software, hardware and systems
 - Security
   - Basic security measures: TLS encrypted network traffic, API keys for rate limiting
 
-Non-functional requiremetns depend heavily on expected scale. 
+Non-functional requirements depend heavily on expected scale. 
 The following help quantify expected scale, and relate to capacity estimation in the next step.
 - Daily active users (DAU)
 - Peak active users
@@ -141,7 +141,60 @@ Planned system architecture:
 - System appends 1 out of 64 characters
 - The system is extendable because if we run out of keys we can append 2 more characters rather than 1
 
+#### Mock interview
+System analysis:
+- System is read heavy - Once a short URL is created it will be read multiple times
+- Distributed system as this has to scale
+- Availability > Consistency - not so much of a concern if a link isn't available to all users at the same time, 
+  but they must be unique and lead to their destination.
+
+**Requirements engineering:-**
+Core feature:
+- A user can input a URL of arbitrary length and receive a unique short URL of fixed size.
+- A user can navigate to a short link and be redirected to the original URL.
+
+Support features:
+- A user can see their link history of all created short URLs.
+- Lifecycle policy - links should expire after a default time span.
+
+Non-functional requirements:
+- Availability - the system should be available 99% of the time.
+- Scalability - the system should support billions of short URLs, and thousands of concurrent users.
+- Latency - the system should return redirect from a short URL to the original in under 1 second.
+
+Questions to capture scale:
+- Daily active users, and how often do users interact per day
+  - 100 million, 1 interaction per day
+- Peak active users - are there events that lead to traffic spikes?
+  - No spikes
+- Read/write ratio
+  - 10 to 1
+- Request size - how long are the originals URLs typically
+  - 200 characters => 200 Bytes
+- Replication factor
+  - 1x - ignore replication
+
+**Capacity estimation:-**
+- Requests per second 
+  - Reads per second = DAU * interactions per day / seconds in day = 10^8 * 1 / 10^5 = 1000 reads/s
+  - Writes per second = Reads per second / read write ratio = 1000 / 10 = 100 writes/s
+  - Requests per second = Reads per second + Writes per second = 1000 + 100 = 1100 requests/s
+  - No peak loads to consider
+- Bandwidth 
+  - Bandwidth = Requests per second * Message size
+  - Read bandwidth = 1000 * 200 Bytes = 200kB/s
+  - Write bandwidth = 100 * 200 Bytes = 20 kB/s
+- Storage
+  - Storage per year = Write bandwidth * seconds per year * Replication factor = 20000 Bytes * (3600*24*365) * 1 = 630 GB
+
+**Data model:-**
+
+**API design:-**
+
+**System design:-**
+
 
 ## References
 - Udemy course https://www.udemy.com/course/the-bigtech-system-design-interview-bootcamp
-- Exaclidraw session: https://excalidraw.com/#json=QM7dLZcHbESVnuTPiu06v,pdjPoskF0KknQ6YORHxeHw
+- Excalidraw session: https://excalidraw.com/#json=QM7dLZcHbESVnuTPiu06v,pdjPoskF0KknQ6YORHxeHw
+- Capacity estimation cheat sheet in _resources folder
