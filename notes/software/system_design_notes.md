@@ -102,6 +102,39 @@ Scaling:
 System diagrams: arrows point in direction of user flow (not data flow)
 
 
+### Databases
+#### Relational databases
+4 main operations (CRUD): Create, Read, Update, Delete.
+
+Transactions - group several operations together
+- Either the entire transaction succeeds or it fails and rolls back to the initial state. Commit or abort on error.
+- Without transactions, if an individual operation fails, it can be complex to unwind the related transactions to return to the initial state.
+- Error handling is simpler as manual rollback of operations is not required.
+- Transactions provide guarantees so we can reason about the database state before and after the transaction.
+
+Transactions enforce "ACID" guarantees:
+- Atomicity -    Transactions cannot be broken down into smaller parts. 
+- Consistency -  All data points within the database must align to be properly read and accepted. Raise a consistency error if this is not the case.
+                 Database consistency is different from system consistency which states the data should be the same across all nodes.
+- Isolation -    Concurrently executing transactions are isolated from each other.
+                 Avoids race conditions if multiple clients are accessing the same database record.
+- Durability -   Once a transaction is commited to the database, it is permanently preserved.
+                 Backups and transaction logs can restore committed transactions in the case of a failure. 
+
+Relational databases are a good fit when:
+- Data is well-structured
+- Use case requires complex querying
+- Data consistency is important
+
+Limitations
+- Horizontal scaling is complex
+- Distributed databases are more complex to keep transaction guarantees
+  - Two phase commit protocol (2PC):
+    1. Prepare - Ask each node if it;s able to promise to carry out the transaction
+    2. Commit - Block the nodes and do the commit
+  - Blocking causes problems on distributed systems where it may cause unexpected consequences if the database is unavailable for this short time. 
+
+
 ## 6. Design discussion
 
 
