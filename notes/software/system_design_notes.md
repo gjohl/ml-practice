@@ -118,7 +118,7 @@ Transactions enforce "ACID" guarantees:
                  Database consistency is different from system consistency which states the data should be the same across all nodes.
 - Isolation -    Concurrently executing transactions are isolated from each other.
                  Avoids race conditions if multiple clients are accessing the same database record.
-- Durability -   Once a transaction is commited to the database, it is permanently preserved.
+- Durability -   Once a transaction is committed to the database, it is permanently preserved.
                  Backups and transaction logs can restore committed transactions in the case of a failure. 
 
 Relational databases are a good fit when:
@@ -133,6 +133,39 @@ Limitations
     1. Prepare - Ask each node if it;s able to promise to carry out the transaction
     2. Commit - Block the nodes and do the commit
   - Blocking causes problems on distributed systems where it may cause unexpected consequences if the database is unavailable for this short time. 
+
+#### Non-relational databases
+Examples of non-relational databases:
+- Key-value store
+- Document store
+- Wide-column store
+- Graph store
+
+These vary a lot, and in general NoSQL simply means "no ACID guarantees".
+
+Transactions were seen as the enemy of scalability, so needed to be abandoned completely for performance and scalability.
+ACID enforces consistency for relational databases; for non-relational databases there is eventual consistency.
+
+BASE:
+- Basically Available -  Always possible to read and write data even though it may not be consistent.
+                         E.g. reads may not reflect latest changes, writes may not be persisted.
+- Soft state -           Lack of consistency guarantees mean data state may change without any interactions with the application
+                         as the database reaches eventual consistency. 
+- Eventual consistency - Data will eventually become consistent once inputs stops.
+
+Benefits:
+- Without atomicity constraint, overheads like 2PC are not required
+- Without consistency constraint, horizontal scaling is trivial
+- Without isolation constraint, no blocking is required which improves availability.
+
+Non-relational databases are a good fit when:
+- Large data volume that isn't tabular
+- High availability requirement
+- Lack of consistency across nodes is acceptable
+
+Limitations:
+- Consistency is necessary for some use cases
+- Lack of standardisation
 
 
 ## 6. Design discussion
@@ -268,3 +301,4 @@ User flows for each of the required functional requirements.
 - Udemy course https://www.udemy.com/course/the-bigtech-system-design-interview-bootcamp
 - Excalidraw session: https://excalidraw.com/#json=QM7dLZcHbESVnuTPiu06v,pdjPoskF0KknQ6YORHxeHw
 - Capacity estimation cheat sheet in _resources folder
+- Database book - "Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems" by Martin Kleppmann
