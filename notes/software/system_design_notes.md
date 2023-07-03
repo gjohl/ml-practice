@@ -148,6 +148,7 @@ System analysis:
 - Availability > Consistency - not so much of a concern if a link isn't available to all users at the same time, 
   but they must be unique and lead to their destination.
 
+
 **Requirements engineering:-**
 Core feature:
 - A user can input a URL of arbitrary length and receive a unique short URL of fixed size.
@@ -187,11 +188,47 @@ Questions to capture scale:
 - Storage
   - Storage per year = Write bandwidth * seconds per year * Replication factor = 20000 Bytes * (3600*24*365) * 1 = 630 GB
 
+
 **Data model:-**
+Identify entities, attributes and relationships.
+
+Entities and attributes: 
+- Links: Key (used to create short URL, Original URL, Expiry date
+- Users: UserID, Links
+- Key ranges: Key range, In use (bool)
+
+Relationships:
+- Users own Links
+- Links belong to Key ranges
+
+Data stores:
+- Users
+  - User data is typically relational and we rarely want it all returned at once. 
+  - Consistency is important as we want the user to have the same experience regardless of which server handles their log in, and don't wat userIds to clash.
+  - Relational database.
+- Links
+  - Non-functional requirements of low latency and high availability.
+  - Data and relationships are not complex.
+  - Key-value store.
+- Key ranges
+  - Favour data consistency as we don't want to accidentally reuse the same key range.
+  - Filtering keys by status would help to find available key ranges.
+  - Relational database.
+
 
 **API design:-**
+Endpoints:
+- createUrl(originalUrl: str) -> shortUrl
+  - response code 200, {shortURL: str}
+- getLinkHistory(userId: str, sorting: {'asc', 'desc'})
+  - response code 200, {links: [str], order: 'asc'}
+- redirectURL(shortUrl: str) -> originalUrl
+  - response code 200, {originalUrl: str}
+
 
 **System design:-**
+User flows for each of the required functional requirements.
+![url_shortener_system.png](../_images/system_design/url_shortener_system.png)
 
 
 ## References
