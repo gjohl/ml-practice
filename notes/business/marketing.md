@@ -144,3 +144,41 @@ Naming:
 - Title=content
 - Choose clarity over cleverness
 
+
+## 3. Reaching prospects with advertising media
+"Half the money I spend on advertising is wasted; the trouble is I don't know which half" - John Wanamaker
+
+Measure ROI of ad campaign
+- If it made more money that it lost, it was a success. The only metric that matters.
+- Customer acquisition cost vs lifetime value of customer
+- Other metrics like response rate are only useful to the extent that they help you calculate the above.
+- Specific target market is key. The goal of the ad is to make they prospect say "Hey, that's for me".
+- What gets measured gets managed. Conversely, what you don't know will hurt you.
+
+Lifetime value of customer = Frontend (initial purchase) + Backend (subsequent purchases)
+- Ideally the frontend alone exceeds the customer acquisition cost to be sustainable.
+  Then the cost of the ad is immediately recouped and the ad campaign can be reupped for another cycle.
+
+Successful marketing has three components:
+1. Market 
+2. Message 
+3. Media
+
+Social media is a media not a strategy and it's not free. 
+It's only _free_ if your time is worthless.
+
+Email is preferable to social media because you own the mailing list.
+The customer database which is a valuable asset in its own right.
+- Email regularly - weekly at least
+- Give value - 3 value-building emails for each offer email
+- Snail mail complements email - less cluttered and less competitive because fewer people still use it.
+
+Marketing budget
+- The only time for a budget is during the testing phase when your finding what works (what delivers a positive ROI)
+- Once you have a campaign that works, go all in. It makes money, it's not an expense so don't limit it.
+- If you could buy £10 notes for £5 you'd buy as many as possible, you wouldn't limit it with a budget.
+  The same applies for a marketing campaign with a £5 cost of acquisition and £10 lifetime value of customer.
+
+Avoid single points of failure
+- One customer, supplier, ad medium, lead generation method.
+- Paid media is reliable and allows ROI to be tracked and measured.
