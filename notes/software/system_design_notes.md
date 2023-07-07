@@ -187,6 +187,7 @@ An app that lets a user add and delete items from a todo list.
 ### 7.2. URL shorteners
 Take an input URL and return a unique, shortened URL that redirects to the original.
 
+#### Encoding deep-dive
 There are two parameters we can vary:
 1. Length of the key - should be limited so the URL is short enough
 2. Range of allowed characters - should be URL-safe
