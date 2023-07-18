@@ -150,5 +150,48 @@ The fundamental insight in this chapter is that we multiply (convolve) probabili
 and shift probabilities when we update, which leads to a converging solution.
 
 
+## 3. Probability and Gaussians
+Gaussian distributions address some of the limitations of the discrete Bayes filter, as they are continuous and unimodal.
+
+### Probability
+- Random variables - the possible values and associated probabilities of a particular event. Denoted with capital letter, e.g. `X`
+- Sample space - the range of values a random variable can take. This is not unique, e.g. for a dice roll could be {1,2,3,4,5,6}, or {even,odd} or {d}
+- Probability distribution -  the probability for the random variable to take any value in the sample space. 
+  Probability _distribution_ denoted with lower case p, and probability of a single event denoted with upper case P, e.g. `P(X=1) = p(1)`
+- Total probability - Probabilities are non-negative and sum/integrate to 1.
+- Summary statistics - mean, median, mode
+- Expected value is the probability-weighted mean of values. This equals the mean if the probability distribution is uniform.
+  `E[X] = \sum{p_i x_i}`
+  `mean = \sum{x_i}/n`
+- Variance - `var(X) = E[(x-mu)^2] = \sum{(x_i - mu)^2}/n`
+  The square in the variance (rather han absolute value) is somewhat arbitrary, 
+  and reflects that the sign of the deviation shouldn't matter and larger deviations are "worse" than smaller deviations.
+  Precision is sometimes used which is the inverse of the variance.
+
+### Gaussians
+Continuous, unimodal probability distributions.
+
+```
+f(x, mu, sigma) = (1 / sigma sqrt(2*pi)) * e^(-(x-mu)^2/2*sigma^2)
+
+which, removing constants, is proportional to
+e^-x^2
+```
+
+The probability of a single point is infinitesimally small. 
+We can think of this in Bayesian terms or frequentist terms.
+As a Bayesian, if the thermometer reads exactly 22°C, then our belief is described by the Gaussian curve; 
+our belief that the actual (system) temperature is near 22°C is very high, and our belief that the actual temperature is,
+say,  near 18 is very low. 
+As a frequentist we would say that if we took 1 billion temperature measurements of a system at exactly 22°C,
+then a histogram of the measurements would look like a Gaussian curve.
+
+Gaussians are nice to work with because the sum of independent Gaussian random variables is another Gaussian random variable.
+The product of Gaussian distributions will be a Gaussian function, i.e. it is Gaussian but may not sum to 1 so will need to be scaled.
+
+They also mean we can summarise/approximate large datasets with only two numbers: mean and variance.
+
+
 ## References
 - "Artificial Intelligence for Robotics". https://www.udacity.com/course/cs373
+- Think Stats ebook https://greenteapress.com/thinkstats/

@@ -24,6 +24,7 @@ Software:
 Engineering/maths :
 - Kalman filter book
 - RNNs?
+- https://greenteapress.com/wp/think-complexity-2e/
 
 Stats
 - Timeseries forecasting: ETS, ARIMA https://www.udacity.com/course/time-series-forecasting--ud980

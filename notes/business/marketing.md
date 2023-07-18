@@ -182,3 +182,24 @@ Marketing budget
 Avoid single points of failure
 - One customer, supplier, ad medium, lead generation method.
 - Paid media is reliable and allows ROI to be tracked and measured.
+
+
+## 4. Capturing leads
+Treat marketing like farming not hunting. Avoid "random acts of marketing" that hunters do.
+Build a CRM system and infrastructure for new leads, follow-ups, conversions, etc.
+
+The first goal is to generate leads - find people who are interested.
+- Avoid trying to sell from the ad immediately
+- Capture all who could be interested, not just those ready to buy immediately
+- Build a customer database, then sell to them later
+
+The market for your product might break down something like:
+- 3% - ready to buy now
+- 7% - open to buying
+- 30% - interested but not right now
+- 60% - not interested
+
+By selling directly from the ad you limit yourself just to the 3%. Capture leads first and nurture them to appeal 
+to the 40% who are interested.
+
+Educate customers to offer value, then you become a trusted advisor rather than a pest salesman.
