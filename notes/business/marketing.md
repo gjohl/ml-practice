@@ -50,7 +50,7 @@ Spend money to make time, not vice versa. Money is a renewable resource, time is
 
 ### 1. Selecting your target market
 The niche should be as specific as possible - an inch wide and a mile deep.
-- Too borad a target market is useless as the message gets diluted
+- Too broad a target market is useless as the message gets diluted
 - Mass marketing/branding can work for larger companies but not small.
   Large companies have enough firepower to fire arrows in all directions.
   Small companies need to fire in a specific direction.
@@ -295,5 +295,163 @@ Other price considerations:
 - Payment plans - people are less attached to future money than present money.
 
 
-## The AFTER pahse
+## The AFTER phase
 ### 7. Delivering a world-class experience
+The goal is to turn customers into a tribe of raving fans.
+Most companies stop marketing at the sell, but this is where the process begins.
+Most of the money is in the backend not the frontend.
+
+Sell them what they **want**, give them what they **need**.
+- These don't always overlap
+- If they buy a treadmill and don't use it, they'll blame you when they don't lose weight.
+  You need to make sure they use your product correctly after they buy it.
+- Split the process up for them to make it less daunting.
+
+Create a sense of theatre
+- People don't just want ot be serviced, they want to be entertained.
+- Innovate on: pricing, financing, packaging, support, delivery etc, not just product.
+  For example, "will it blend" YouTube videos to sell ordinary blenders.
+
+Use technology to reduce friction.
+Treat tech like an employee. Why am I hiring it? What are its KPIs?
+
+Become a voice of value to your tribe.
+- Education-based marketing leads to trust and becoming an expert in the field.
+- Tell your audience the effort that goes into the product. 
+  For example, shampoo bottle that says how many mint leaves went into it.
+
+Create replicable systems
+- Systems ensure you **have** a business, rather than you **are** the business
+- Often overlooked because it is "back office" or "not urgent"
+- Benefits: build valuable asset; leverage and scalability; consistency; lower labour costs
+- Areas:
+  1. Marketing (leads)
+  2. Sales (follow-up)
+  3. Fulfillment
+  4. Admin
+- Create an operations manual:
+  1. Imagine the business is 10x the size
+  2. Identify all **roles**
+  3. Identify all **tasks** - what does each role do
+  4. Checklist for each task
+
+Exit strategy.
+Start with the end in mind.
+If the goal is to sell for $50 million, any decision can be framed as "will this help me get to $50 million?".
+Who will buy the company? Why? Customer base, revenue or IP?
+
+
+### 8. Increasing customer lifetime value
+People are 21x more likely to buy from a company they've previously bought from.
+Increase revenue by selling more to existing customers.
+
+1. Raise prices
+  - People are less price sensitive than you'd expect.
+  - Some may leave but these were the lowest-value customers - this may be polluted revenue you want to fire anyway.
+    A customer won on price can be lost on price.
+  - Give a reason why prices increased. Explain the benefits they've received and future innovations.
+  - Grandfather existing customers on old price as a loyalty bonus. 
+2. Upselling
+  - "Contrast principle" - people are less price sensitive to add-ons. 
+    If they've already bought the suit then the shirt seems cheap.
+  - "Customers who bought X also bought Y" - people want to fit social norms.
+  - Sell more when the client is "hot and heavy" in the buying mood.
+    Some people naively think you should overwhelm them with more selling.
+3. Ascension
+  - Move customers up to a higher-priced tier.
+  - Product mix - standard, premium, ultra-high.
+4. Frequency of purchases
+  - Reminders, subscriptions
+  - Reasons to come back; voucher for next purchase.
+5. Reactivation
+  - Lure back lapsed customers with strong offer and call to action.
+  - Ask why they haven't returned.
+  - Apologise and make corrections if necessary. Make the feel special if they do return.
+
+Key numbers - what gets measured gets managed
+1. Leads
+2. Conversion rate
+3. Average transaction value
+4. Break even point
+
+For subscription models measure:
+1. Monthly recurring revenue
+2. Churn rate
+3. Customer lifetime value
+
+Polluted revenue - dollars from toxic customers != dollars from raving fans.
+Types of customers:
+1. Tribe
+2. Churners - can't afford you so drop you on price or intro offer ending
+3. Vampires - suck up all your time, you can't afford them
+4. Snow leopard - big customer but not replicable
+
+Net promoter score
+- "How likely are you to recommend us to a friend?"
+- Detractors 0-6; Passive 7-8; Promoters 9-10
+- NPS=+100 if everyone is a promoter, -100 if everyone is a detractor
+
+Fire problem customers
+- "The customer is always right" is naive. It should be "the right customer is always right".
+- Genuine customer complaints are valuable and may help retain other customers who had the same issue but didn't speak up.
+- Low-value, price-sensitive customers complain the most. They take up your time and energy at the expense of your tribe.
+- Firing detractors creates scarcity and frees your time to focus on the tribe.
+  With limited supply, customers have to play and pay by your rules.
+
+
+### 9. Orchestrating and stimulating referrals
+Orchestrating referrals is an active task, not needy or desperate,
+- Don't just deliver a good product and hope for the best
+- People refer because it makes **them** feel good, helpful or knowledgeable, not to do you a favour.
+- Appeal to their ego, offer them something valuable, give them a reason to refer.
+
+Ask (for a referral) and ye shall receive.
+- "Law of 250" - most people know 250 people well enough to invite to a wedding or funeral. This is 250 potential referrals per customer.
+- Set expectation of referrals **beforehand** - "We're going to do a great job and we need your help... Most people refer 3 others."
+
+Be specific about **who** you ask and **what** kind of referral you want.
+Conquer the bystander effect.
+
+Make referral profiles for each customer group in your database.
+- Who do they know?
+- How can you make them remember you? 
+- What will make them look good?
+- How will they provide value to their referral target
+
+Customer buying behaviour
+- Who has your customers before you?
+- Joint venture for referrals
+- Sell/exchange leads, resell complementary products, affiliate referral partner
+
+Brand = personality of the business. 
+Think of the business as a person:
+- Name
+- Design (what they wear)
+- Positioning (how they communicate)
+- Brand promise (core values)
+- Target market (who they associate with)
+- Brand awareness (how well known / popular)
+
+Best form of brand building is selling
+- Branding is what you do after someone has bought from you.
+- Brand equity - customers crossing the road to buy from you and walk past competitors.
+
+
+### 10. Conclusion
+Implementation is crucial
+- Knowing and not doing is the same as not knowing.
+- Common pitfalls:
+  1. Paralysis by analysis - 80% out the door is better than 100% in the drawer; money loves speed.
+  2. Fail to delegate
+  3. "My business is different" - Spend your effort figuring out how to make it work rather than why it won't work.
+
+Time is not money
+- Entrepreneurs get paid for the value they create, not the time or effort they put in.
+- Making money is a side effect of creating value.
+
+The value of a business is the eyeballs it has access to.
+
+Questions to ponder:
+- What business should I be in?
+- What technologies will disrupt it?
+- How can I take advantage of tech rather than fight it?
