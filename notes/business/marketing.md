@@ -1,8 +1,8 @@
 # Marketing
 Notes from "The 1-Page Marketing Plan" by Allan Dib.
 
-
-## 0. Introduction
+## The BEFORE phase
+### 0. Introduction
 The overall phases of the direct response marketing strategy are:
 
 | Phase  | Status   | Goal                  |
@@ -48,7 +48,7 @@ Identify this 4% and focus on it. Often this is marketing.
 Spend money to make time, not vice versa. Money is a renewable resource, time is finite.
 
 
-## 1. Selecting your target market
+### 1. Selecting your target market
 The niche should be as specific as possible - an inch wide and a mile deep.
 - Too borad a target market is useless as the message gets diluted
 - Mass marketing/branding can work for larger companies but not small.
@@ -83,7 +83,7 @@ Describe their life, job, activities, relationships.
 Answer each of the questions above from their POV.
 
 
-## 2. Crafting your message
+### 2. Crafting your message
 There are two key elements of the message:
 1. Purpose of the ad
 2. What it focuses on
@@ -145,7 +145,7 @@ Naming:
 - Choose clarity over cleverness
 
 
-## 3. Reaching prospects with advertising media
+### 3. Reaching prospects with advertising media
 "Half the money I spend on advertising is wasted; the trouble is I don't know which half" - John Wanamaker
 
 Measure ROI of ad campaign
@@ -183,8 +183,8 @@ Avoid single points of failure
 - One customer, supplier, ad medium, lead generation method.
 - Paid media is reliable and allows ROI to be tracked and measured.
 
-
-## 4. Capturing leads
+## The DURING phase
+### 4. Capturing leads
 Treat marketing like farming not hunting. Avoid "random acts of marketing" that hunters do.
 Build a CRM system and infrastructure for new leads, follow-ups, conversions, etc.
 
@@ -203,3 +203,97 @@ By selling directly from the ad you limit yourself just to the 3%. Capture leads
 to the 40% who are interested.
 
 Educate customers to offer value, then you become a trusted advisor rather than a pest salesman.
+
+
+### 5. Nurturing leads
+The process of taking people from being vaguely interested to desiring it.
+The nurturing process means they should be predisposed to buying from you before you ever try to sell to them.
+
+Stay in contact. 
+- Most stop after 1 or 2 follow-ups. The most effective salespeople do 10+ follow-ups.
+- The money is in the follow-up
+
+Build trust and add value. Don't pester to close.
+- When the customer is ready to buy, you will be top of mind and they are predisposed to buy.
+  It should be when they are ready to buy, not when you are ready to sell.
+- Do not pressure prospects to close. Don't be a pest, be a welcome guest.
+- Contact regularly - "market until they buy or die".
+- Most contact should be value add, with occasional pitch/offer emails. 3:1 ratio of value add:pitch.
+
+Shock and awe package.
+- Physical parcel mailed to high probability prospects.
+- "Lumpy" mail grabs attention - snail mail with something physical inside.
+- Need numbers on conversion probabilities and lifetime value of customer for this approach to be viable. 
+  Good marketing can't beat bad math. 
+- High value contents should:
+  1. Provide value
+  2. Position you as a trusted expert
+  3. Move prospect further down the buying cycle.
+
+Make lots of offers. A/B test with small segments.
+Take risks, write compelling copy and make outrageous guarantees.
+
+Three major types of people:
+
+| Type         | Role            | Responsibility |
+|--------------|-----------------|----------------|
+| Entrepreneur | "Make it up"    | Vision         |
+| Specialist   | "Make it real"  | Implement      |
+| Manager      | "Make it recur" | Daily BAU      |
+
+Marketing calendar.
+- What needs to be done and when
+- Daily, weekly, monthly, quarterly, annually
+- Event-triggers tasks, e.g. on signup, on complaint
+
+Delegate.
+- If someone else can do the job 80% as good as you, delegate it.
+- Separate majors and minors. Focus on the majors, dump or delegate the minors. 
+- Don't mistake movement for achievement.
+- Days are expensive. You can get more money but not more time.
+
+
+### 6. Sales conversion
+Once you reach a certain level of expertise, the real profit is in how you market yourself.
+A concert violinist makes more money performing concerts than busking.
+
+Trust is key in sales.
+- Difficult for unknown businesses.
+- People are wary because of dodgy sellers. Assume every dog bites.
+- Educate -> Position as expert -> Trust
+- Delay the sale to show:
+  1. You are willing to give before you take
+  2. You are an educator, so can be trusted
+- Stop selling and start educating, consulting, advising.
+- Entrepreneur is someone who solves people's problems for profit.
+
+Outrageous guarantees.
+- Reverse the risk from the customer to you.
+- Guarantee needs to be **specific** and address the prospect's reservations directly.
+  Not just a generic money-back guarantee.
+- If you're an ethical operator, you're already implicitly providing a guarantee, just not marketing it. Use it!
+
+Pricing.
+- The marketing potential of price is often underutilised.
+- Don't just naively undercut the market leader or use cost-plus pricing.
+- Small number of options/tiers
+  - More choice means you are more likely to **pique** interest but less likely to **keep** interest.
+  - Fear of a suboptimal choice; the paradox of choice.
+  - Standard and premium tiers and a good rule of thumb.
+- "Unlimited" option can often be profitable because customers overestimate how much they will use, 
+  so overpay for unlimited use.
+- Ultra high ticket item
+  - Makes other tiers seem more reasonably priced
+  - 10% of customers would pay 10x more. 1% of customers would pay 100x more.
+
+Other price considerations:
+- Don't discount, unless specifically using a loss-leader strategy.
+- Try before you buy (the puppy dog close)
+  - The sale feels less permanent so more palatable for the customer.
+  - The onus is on the customer to return - shifts the power balance.
+- Don't segregate departments - everyone can warm up a prospect.
+- Payment plans - people are less attached to future money than present money.
+
+
+## The AFTER pahse
+### 7. Delivering a world-class experience
