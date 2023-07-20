@@ -209,9 +209,18 @@ p(x_i|z) = p(z|x_i)p(x_i)/p(z)
 - `p(z|x_i)` is the likelihood - the probability that we get the sensor measurement `z` at each position `x_i` 
 - `p(x_i)` is the prior - our belief before incorporating the measurement
 - `p(x_i)` is the evidence - in practice this is often an intractable integral which we can sidestep by treating this as a normalisation factor, as we know the posterior pdf must sum to 1.
-- `p(x_i|z)` is the posterior - 
+- `p(x_i|z)` is the posterior - this is typically a hard question to answer, but using Bayes we can substitute it with the easier
+                                question answered by the likelihood and prior.
+                                Rather than answering "what is the probability of cancer given this test result" (hard problem)
+                                we instead answer "what is the probability of this test result given someone has cancer" (easier problem)
 
 
+### Limitations
+A limitation of using Gaussians to model physical systems is that it has infinitely long tails, but in practice many physical
+quantities have hard bounds, e.g. weight cannot be negative. Under a Gaussian assumption, model people's weight as a Gaussian
+would suggest there is a miniscule chance that someone weights 1000000kg, which is obviously wrong.
+
+This can impact the performance of Kalman filters as they rely on assumptions of Gaussian noise, which aren't strictly true.
 
 
 ## References
