@@ -127,3 +127,170 @@ Curse of knowledge. Revisit assumed knowledge.
 
 Make clear what the concept **isn't**.
 An explanation is a small mental model in a large space of possibilities. Reduce the size of that space.
+
+
+### 8. Persuasion
+Demolish the listener's existing knowledge and rebuild it; replace it with something better.
+Genius is something that comes to you, not something you are.
+
+An "intuition pump" is an example or metaphor that makes the conclusion more plausible. 
+Not a rigorous argument, but nudges the listener in the right direction.
+Prime with emotion or story, then persuade with reason.
+
+Turn the audience into detectives. Tell a story.
+Start with a big mystery, traverse the possible solutions until only one plausible conclusion remains.
+
+
+### 9. Revelation
+Three approaches to revelatory talks:
+
+1. The wonder walk
+   - Reveal a succession of inspiration images
+   - Obvious throughline with accessible language and **silence**
+   - The message should be "how intriguing is this" not "look what I achieved"
+2. Demo
+    - Initial tease, background context, demo, implications
+3. Dreamscape
+   - Create a world that doesn't exist but someday might
+   - Paint a bold picture of an alternative future
+   - Make others desire that future
+   - Emphasise human values not just clever tech, otherwise the audience might freak out at the possible negative implications of the technology
+
+
+## Preparation process
+### 10. Visuals
+Slides can distract. If you do use them, make sure they add something.
+
+Visuals should:
+- Reveal - set contecxt, prime, BAM!
+- Explain - one idea per slide with a clickbait headline not a summary. Highlight the point you're making.
+- Delight - show impressive things and let them speak for themselves. Don't need to explain every image/slide.
+
+Don't let the slides be spoilers for what you're about to say.
+The message loses its impact, it's not news anymore.
+
+
+### 11. Scripting
+The goal is to have a set structure that you speak naturally and authentically about.
+
+Both approaches have the same result:
+1. Script and memorise until natural, or
+2. Freestyle around bullet points and rehearse until structure is set
+
+Being read to and being talked to are very different experiences
+- Dictating the speech rather than writing it can help make sure it comes across how you would speak rather than how you would write.
+- Don't end up in the uncanny valley between reading and speaking
+- In some cases, reading is powerful if it's clear that this is a poetic, written piece. Abandon the script for an impactful finale.
+
+What you are saying matters more than the exact word choice.
+
+Rehearse your impromptu remarks.
+
+
+### 12. Run throughs
+Practice speaking by speaking!
+
+rehearse in phases:
+1. Editing and cutting
+2. Pacing and timing
+3. Delivery
+
+Aim to use <90% of the time limit.
+results in tighter writing, and time to riff and enjoy the reaction.
+
+
+### 13. Open and close
+You have the audience's attention at the start, then it's yours to lose.
+Opener has to capture attention and keep it.
+2 stages:
+1. 10 seconds to capture attention
+2. 1 minute to hold it
+
+Opening techniques:
+1. Drama
+2. Curiosity - more specific questions are more intriguing
+3. Compelling slide/image - "the next image changed my life"
+4. Tense but don't give away - show where you're going but save the reveal
+
+
+The closer dictates how the whole talk will be remembered.
+
+Closing techniques:
+1. Camera pullback - big picture and implications
+2. Call to action
+3. Personal commitment
+4. Inspiring values/vision
+5. Encapsulation - neatly reframe the main idea
+6. Narrative symmetry - callback to opener
+7. Lyrical inspiration - poetic conclusion
+
+
+## On stage
+### 14. Wardrobe
+- Choose an outfit early
+- Dress like the audience but smarter
+- Dress for the people in the back row
+
+
+### 15. Mental prep
+- Embrace the nerves and draw attention to it. Vulnerability humanises you.
+- Pick friendly faces in the audience and speak to them.
+- Backup plan - have a story ready to fill in during unexpected technical issues
+- Focus on the message - "THIS MATTERS"
+
+
+### 16. Setup
+Visual barriers between the speaker and audience can create a sense of authority but at the expense of a human connection.
+If they can see you, you're vulnerable.
+If you're vulnerable, they can connect.
+
+Referring to notes is fine if done sparingly and unambiguously.
+It humanises you if done honestly.
+It appears sneaky and dishonest if you try to do it secretly.
+
+
+### 17. Voice and presence
+Speaking style adds another stream of input parallel to the words themselves.
+It tells the listener how they should interpret the words.
+
+Six voice tools. Vary each of them depending on the meaning and emotion.
+1. Volume
+2. Pitch
+3. Pace
+4. Timbre
+5. Tone
+6. Prosody (singsong rise and fall)
+
+Speed should be a conversational pace, approx 130-170 words per minute.
+- People often worry about speaking too fast
+- Speaking too slow is a more common problem (overcorrection?)
+- Understanding outpaces articulation, the listener is "dying of word starvation"
+
+Speak, don't orate.
+
+Body language
+- Stand and move intentionally.
+- Stop to make a point then walk to the next point.
+
+
+### 18. Format innovation
+Add too many ingredients and you risk losing attention.
+What you **say** can just be signposts for what you **show** - set it up, show it, shut up.
+
+
+## Reflection
+### 19. Talk renaissance
+Knowledge of specific facts is becoming more specialised and commoditised.
+Understanding how everything fits together is becoming broader, more unified.
+
+Concepts of specialised knowledge are outdated, stemming from industrial age thinknig.
+Modern thinking values:
+1. Contextual knowledge
+2. Creating knowledge
+3. Understanding of humanity
+
+As people become more interconnected, innovation becomes crowd-accelerated.
+
+Happiness is finding something bigger than you and dedicating your life to it.
+Nudge the world - give it questions to spark conversations.
+"The future is not yet written, we are all collectively in the process of writing it"
