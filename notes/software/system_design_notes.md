@@ -171,9 +171,11 @@ Limitations:
 ## 6. Design discussion
 
 
+## 7. System components
 
-## 7. System design examples and discussion
-### 7.1. Todo App
+
+## 8. System design examples and discussion
+### 8.1. Todo App
 An app that lets a user add and delete items from a todo list.
 - Representation layer is a web app
 - Microservices handle the todo CRUD operations and the user details separately
@@ -184,7 +186,7 @@ An app that lets a user add and delete items from a todo list.
 
 ![img.png](../_images/system_design/design_todo_app.png)
 
-### 7.2. URL shorteners
+### 8.2. URL shorteners
 Take an input URL and return a unique, shortened URL that redirects to the original.
 
 #### Encoding deep-dive

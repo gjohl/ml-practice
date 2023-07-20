@@ -19,13 +19,13 @@ Direct response marketing should be:
 
 A marketing plan encompasses:
 
-| Stage | Example |
-| ----- | ------- |
-| Advertising | Sign for the circus |
-| Promotion | Put the sign on an elephant and walk it into town |
-| Publicity | Elephant tramples the mayor's flowers and it makes the news |
-| PR | You get the mayor to laugh it off |
-| Sales | People come to the circus and spend money |
+| Stage       | Example                                                     |
+|-------------|-------------------------------------------------------------|
+| Advertising | Sign for the circus                                         |
+| Promotion   | Put the sign on an elephant and walk it into town           |
+| Publicity   | Elephant tramples the mayor's flowers and it makes the news |
+| PR          | You get the mayor to laugh it off                           |
+| Sales       | People come to the circus and spend money                   |
 
 Strategy changes with scale
 - Don't blindly copy large companies. "Branding" to "get your name out there"

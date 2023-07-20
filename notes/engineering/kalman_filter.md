@@ -188,8 +188,30 @@ then a histogram of the measurements would look like a Gaussian curve.
 
 Gaussians are nice to work with because the sum of independent Gaussian random variables is another Gaussian random variable.
 The product of Gaussian distributions will be a Gaussian function, i.e. it is Gaussian but may not sum to 1 so will need to be scaled.
+Sum of two Gaussians:
+- mu = mu_1 + mu_2
+- var = var_1 + var_2
+Product of two Gaussians:
+- mu = (var_1*mu_2 + var_2*mu_1) / (var_1 + var_2)
+- var = (var_1*var_2) / (var_1 + var_2)
 
 They also mean we can summarise/approximate large datasets with only two numbers: mean and variance.
+
+Bayes theorem applies to probability distribution functions (p) just like it does to individual events (P).
+From the general form of Bayes theorem:
+```
+p(A|B) = p(B|A)p(A)/p(B)
+```
+Recasting this for the sensor problem, where A=x_i (the position) and B=z ())sensor reading):
+```
+p(x_i|z) = p(z|x_i)p(x_i)/p(z)
+```
+- `p(z|x_i)` is the likelihood - the probability that we get the sensor measurement `z` at each position `x_i` 
+- `p(x_i)` is the prior - our belief before incorporating the measurement
+- `p(x_i)` is the evidence - in practice this is often an intractable integral which we can sidestep by treating this as a normalisation factor, as we know the posterior pdf must sum to 1.
+- `p(x_i|z)` is the posterior - 
+
+
 
 
 ## References
