@@ -223,6 +223,11 @@ would suggest there is a miniscule chance that someone weights 1000000kg, which 
 This can impact the performance of Kalman filters as they rely on assumptions of Gaussian noise, which aren't strictly true.
 
 
+## 4. One-dimensional Kalman filter
+A filter to track one state variable, position.
+A Kalman filter is essentially a Bayesian filter that uses Gaussians, so combines the previous two chapters.
+
+
 ## References
 - "Artificial Intelligence for Robotics". https://www.udacity.com/course/cs373
 - Think Stats ebook https://greenteapress.com/thinkstats/

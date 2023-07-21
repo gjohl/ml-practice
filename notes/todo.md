@@ -1,3 +1,18 @@
+## Plan
+- Kalman filter
+- System design
+- Pitching
+
+
+## Done
+- SQL
+- Deep learning
+- Software architecture
+- Marketing
+- Public speaking
+
+
+## Skills
 Soft skills:
 - Marketing - 1 page marketing plan; 22 immutable laws of marketing?
 - Sales - spin selling by Neil Rackham
@@ -18,7 +33,7 @@ Software:
 - Docker - Udemy course
 - AWS solutions architect Udemy course
 - Cracking the coding interview?
-- Data structures and algorithms?
+- Data structures and algorithms? https://allendowney.github.io/DSIRP/
 - Devops - Continuous deployment book
 
 Engineering/maths :
