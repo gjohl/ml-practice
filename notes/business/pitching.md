@@ -54,7 +54,7 @@ Beta traps enforce your lower status.
 E.g. making you wait, big dogs not showing up to meetings, small talk before meetings.
 
 Situational status is the temporary shift of status based on the situation.
-Create local star power to increase your situational staus.
+Create local star power to increase your situational status.
 - Ignore power rituals, avoid beta traps, ignore their global status
 - Frame control - small, friendly acts of defiance
 - Local star power - shift conversation to a topic where you are the domain expert

@@ -8,6 +8,7 @@ Steps:
 5. System design
 6. Design discussion
 
+
 ## 1. Requirements engineering
 Functional and non-functional requirements.
 Scale of the system.
@@ -66,9 +67,59 @@ The following help quantify expected scale, and relate to capacity estimation in
 - Request size
 - Replication factor - determines the storage requirement (typically 3x)
 
-## 2. Capacity Estimation
 
-Requests (requests per second), bandwidth (requests * message size), storage
+## 2. Capacity Estimation
+>**Interview tips**
+> - Simplify wherever you can - simple assumptions and round heavily
+> - Convert all numbers to scientific notation
+> - Know powers of 2
+
+### 2.1. Throughput
+Requests per second (RPS) is the key measure.
+
+```
+Requests per day = Daily active users * Activities per user
+Requests per second = RPD / 10^5
+Peak load = RPS * Peak load factor
+```
+
+Read/write ratio is important to get the total requests.
+Usually, information on either reads or writes is missing and must be inferred using the other.
+
+```
+Total RPS = Read RPS + Write RPS
+```
+
+### 2.2. Bandwidth
+The amount of data that can be transmitted between two nodes in a fixed period of time.
+Bits per second.
+
+Throughput, bandwidth and latency are all related and can be thought of with the motorway analogy.
+- Throughput is the total number of vehicles that must pass through that road per day.
+- Bandwidth is the number of lanes.
+- Latency is the time taken to get from one end of the road to another.
+
+The bandwidth must be large enough to support the required throughput.
+
+```
+Bandwidth = Total RPS * Request size
+```
+
+Even high bandwidth can result in low latency if there is an unexpectedly high peak throughput. 
+Rush hour traffic jam.
+
+Request size can be varied according to bandwidth,
+e.g. YouTube lowers the resolution if the connection is slow.
+
+
+### 2.3. Storage
+Measured in bits per second using the Write RPS.
+Long term storage (assuming the same user base) is also helpful.
+
+```
+Storage capacity per second = Write RPS * Request size * Replication factor
+Storage capacity in 5 years = Storage capacity per second * 2*10^8 
+```
 
 
 ## 3. Data modeling
@@ -102,7 +153,26 @@ Scaling:
 System diagrams: arrows point in direction of user flow (not data flow)
 
 
-### Databases
+## 6. Design discussion
+
+
+## 7. System components deep-dive
+### 7.1. Encoding
+There are two parameters we can vary:
+1. Length of the key - should be limited so the URL is short enough
+2. Range of allowed characters - should be URL-safe
+
+Using Base-64 encoding as the character range, then a 6-digit key length gives enough unique URLs;
+64^6 = 68 billion
+
+Encoding options:
+1. MD5 hash: not collision resistant and too long
+2. Encoded counter, each URL is just an index int, and its value is the base-64 encoding of that int:
+   length is not fixed and increases over time
+3. Key range, generate all unique keys beforehand: no collisions, but storage intensive
+4. Key range modified, generate 5-digit keys beforehand, then add the 6th digit on the fly.
+
+### 7.2. Databases
 #### Relational databases
 4 main operations (CRUD): Create, Read, Update, Delete.
 
@@ -167,11 +237,13 @@ Limitations:
 - Consistency is necessary for some use cases
 - Lack of standardisation
 
+### 7.3. File synchronisation
+Problem: if we have large files with small changes, we don't want to have to re-upload and re-download the whole file
+every time something changes.
 
-## 6. Design discussion
+Solution: identify the changes and only push/pull these. Similar to git.
 
-
-## 7. System components
+Rsync algorithm.
 
 
 ## 8. System design examples and discussion
@@ -188,21 +260,6 @@ An app that lets a user add and delete items from a todo list.
 
 ### 8.2. URL shorteners
 Take an input URL and return a unique, shortened URL that redirects to the original.
-
-#### Encoding deep-dive
-There are two parameters we can vary:
-1. Length of the key - should be limited so the URL is short enough
-2. Range of allowed characters - should be URL-safe
-
-Using Base-64 encoding as the character range, then a 6-digit key length gives enough unique URLs;
-64^6 = 68 billion
-
-Encoding options:
-1. MD5 hash: not collision resistant and too long
-2. Encoded counter, each URL is just an index int, and its value is the base-64 encoding of that int:
-   length is not fixed and increases over time
-3. Key range, generate all unique keys beforehand: no collisions, but storage intensive
-4. Key range modified, generate 5-digit keys beforehand, then add the 6th digit on the fly.
 
 Planned system architecture:
 - Pre-generate all 5 digit keys (1 billion entries rather than 64 billion for 6 digits)
