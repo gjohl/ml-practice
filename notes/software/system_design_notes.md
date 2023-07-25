@@ -243,7 +243,41 @@ every time something changes.
 
 Solution: identify the changes and only push/pull these. Similar to git.
 
-Rsync algorithm.
+The rsync algorithm makes it easier to compare changes by:
+1. Split the file into blocks
+2. Calculate a checksum for each block (using MD5 hashing algorithm)
+3. To compare files between the client and the server, we only need to send the hashes back and forth
+4. For the mismatching hashes, transfer the corresponding blocks 
+
+### 7.4. Notifications
+One-way communication that broadcasts file updates one-to-many.
+
+#### Pull approach
+Polling is an example of a pull API.
+We periodically query the server to see if there are any updates. If not, the server responds immediately saying there is no new data.
+This may result in delayed updates and can overwhelm the server with too many requests.
+![polling.png](../_images/system_design/polling.png)
+
+#### Push approach
+Long-polling. 
+The client connects to the server and makes a request. 
+Instead of replying immediately, the server waits until there is an update and then sends the response.
+If there is no update for a long time, the connection times out and the client must reconnect.
+Server resources are tied up until the connection is closed, even if there is no update.
+![long_polling.png](../_images/system_design/long_polling.png)
+
+Websockets.
+The client establishes a connection using an HTTP request and response. 
+This establishes a TCP/IP connection for 2-way communication.
+This allows for real-time applications without long-polling.
+![websockets.png](../_images/system_design/websockets.png)
+
+Server sent events.
+Event-based approach.
+EventSource API supported by all browsers.
+The connection is 1-directional; the client can only pass data to the server at the point of connection. After that, only the server can send data to the client.
+The server doesn't know if the client loses connection.
+![sse.png](../_images/system_design/sse.png)
 
 
 ## 8. System design examples and discussion
@@ -359,6 +393,7 @@ User flows for each of the required functional requirements.
 
 ## References
 - Udemy course https://www.udemy.com/course/the-bigtech-system-design-interview-bootcamp
-- Excalidraw session: https://excalidraw.com/#json=QM7dLZcHbESVnuTPiu06v,pdjPoskF0KknQ6YORHxeHw
+- Excalidraw session https://excalidraw.com/#json=QM7dLZcHbESVnuTPiu06v,pdjPoskF0KknQ6YORHxeHw
 - Capacity estimation cheat sheet in _resources folder
 - Database book - "Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems" by Martin Kleppmann
+- Rsync algorithm https://openresearch-repository.anu.edu.au/bitstream/1885/40765/3/TR-CS-96-05.pdf
