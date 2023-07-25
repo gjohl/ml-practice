@@ -253,12 +253,16 @@ The rsync algorithm makes it easier to compare changes by:
 One-way communication that broadcasts file updates one-to-many.
 
 #### Pull approach
+These are synchronous.
+
 Polling is an example of a pull API.
 We periodically query the server to see if there are any updates. If not, the server responds immediately saying there is no new data.
 This may result in delayed updates and can overwhelm the server with too many requests.
 ![polling.png](../_images/system_design/polling.png)
 
 #### Push approach
+These are asynchronous.
+
 Long-polling. 
 The client connects to the server and makes a request. 
 Instead of replying immediately, the server waits until there is an update and then sends the response.
@@ -278,6 +282,74 @@ EventSource API supported by all browsers.
 The connection is 1-directional; the client can only pass data to the server at the point of connection. After that, only the server can send data to the client.
 The server doesn't know if the client loses connection.
 ![sse.png](../_images/system_design/sse.png)
+
+### 7.5. Message broker
+A system component that implements asynchronous communication between services, decoupling them.
+An independent server which producers and consumers connect to.
+AKA message queues.
+
+Message brokers persist the messages until there are consumers ready to receive them.
+
+Message brokers are similar in principle to databases since they persist data.
+The differences are they: automatically delete messages after delivery, do not support queries, 
+typically have a small working set, and notify clients about changes.
+
+RabbitMQ, Kafka and Redis are open source message brokers.
+Amazon, GCP and Azure have managed service implementations.
+
+#### Point-to-point messaging
+A one-to-one relationship between sender and receiver. Each message is consumed by exactly one receiver. 
+
+The message broker serves as an abstraction layer.
+The producer only sends to the broker. The receiver only receives from the broker. The services do not need to know about one another.
+The broker also guarantees delivery, so the message does not get lost if the consumer is unavailable, it will retry. 
+![point_to_point.png](../_images/system_design/point_to_point.png)
+
+#### Pub/sub messaging
+A one-to-many relationship between sender and receiver.
+The publisher publishes to a certain topic. Any consumer who is interested can then subscribe to receive that message.
+![pub_sub.png](../_images/system_design/pub_sub.png)
+
+### 7.6. File storage
+#### File-based
+Files are stored in folders, with metadata about creation time and modification time.
+
+Benefits: 
+- Simplicity - simple and well-known pattern
+- Compatibility - works with most applications and OSes
+
+- Limitations:
+- Performance degradation - as size increases, the resource demands increase.
+- Expensive - although cheap in principle, they can get expensive when trying to work around the performance issues.
+
+Use cases: data protection, local archiving, data retrieval done by users.
+
+#### Object-based
+A system component that manages data as objects in a flat structure. An object contains the file and its metadata.
+
+Benefits:
+- Horizontal scalability
+
+Limitations:
+- Objects must be edited as a unit - degrades performance if only a small part of the file needs to be updated.
+
+Use cases: large amounts of unstructured data.
+
+#### Block-based
+A system component that breaks up and then stores data as fixed-size blocks, each with a unique identifier.
+
+Benefits:
+- Highly structured - easy to index, search and retrieve blocks
+- Low data transfer overheads
+- Supports frequent data writes without performance degradation
+- Low latency
+
+Limitations:
+- No metadata, so metadata must be handled manually
+- Expensive
+
+#### Document-based
+A subclass of key-value stores, which hold computer-readable documents, like XML or JSON objects.
 
 
 ## 8. System design examples and discussion
