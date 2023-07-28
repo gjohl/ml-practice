@@ -15,11 +15,11 @@
 ### Soft skills
 Done:
 - Marketing - 1 page marketing plan; 22 immutable laws of marketing?
-- Public speaking - TED talk book. Steal the show by Michael Port. 
+- Public speaking - TED talk book. Steal the show by Michael Port?
 
 In Progress:
-- Pitching - Pitch Anything: An Innovative Method for Presenting, Persuading, and Winning the Deal by Oren Klaff
-- Sales - Spin selling by Neil Rackham
+- Pitching - Pitch Anything by Oren Klaff
+- Sales - Spin selling by Neil Rackham; Founder Sales.
 
 To Do:
 - SaaS: Start small stay small; SaaS playbook
@@ -42,6 +42,9 @@ In progress:
 
 To Do:
 - AWS solutions architect Udemy course
+
+Backlog:
+- Game development - Unity udemy course
 - Cracking the coding interview?
 - Data structures and algorithms? https://allendowney.github.io/DSIRP/
 - Devops - Continuous deployment book
@@ -58,14 +61,16 @@ To Do:
 - https://greenteapress.com/wp/think-complexity-2e/
 
 ### Stats
-To Do:
+Backlog:
 - Intro to probability book
 - Timeseries forecasting: ETS, ARIMA https://www.udacity.com/course/time-series-forecasting--ud980
 - Classical stats: t-stat, ANOVA https://www.udacity.com/course/intro-to-inferential-statistics--ud201
 - Filters https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373
 
 ### Big data
-To Do:
+Backlog:
+- https://www.tutorialspoint.com/pyspark/index.htm
+- https://www.udemy.com/course/best-hands-on-big-data-practices-and-use-cases-using-pyspark/
 - https://www.udacity.com/course/learn-spark-at-udacity--ud2002
 
 ### Interview prep

@@ -62,3 +62,70 @@ Create local star power to increase your situational status.
 - Confirm your status - make them say you're the alpha
 
 Shock -> frame control -> local star power -> hook point -> leave
+
+
+## 4. Pitching the big idea
+Four sections of the pitch:
+
+### 4.1. Introduce yourself and the big idea (5 mins)
+Keep the pitch short - 20 mins.
+- Announce the time constraint at the start to appease the croc brain. 
+  Otherwise people don't know how long they are trapped for and panic.
+- DNA presentation by Crick and Watson was 5 mins
+
+Intro should be highlights of successes NOT a life story.
+- The impression you leave is based the **average** not the sum, so don't dilute it.
+
+The "why now?" frame.
+3 market forces pattern:
+1. Economic
+2. Social
+3. Technology
+
+Tell the story of how your idea came to be.
+- Movement is key to overcoming change blindness. Don't just show 2 states, describe the transition between them.
+- Trends, impacts of those trends, how have these opened a (temporary) market window (time frame).
+- This story places you as the hero at the centre of solving this problem (prize frame).
+
+Idea introduction pattern:
+> For [target customers]
+> 
+> Who are dissatisfied with [current offerings in the market]
+> 
+> My idea/product is a [new idea or product category]
+> 
+> That provides [key problem/solution features]
+> 
+> Unlike [the competing product]
+> 
+> My idea/product is [describe key features]
+
+### 4.2. Explain the budget and secret sauce (10 mins)
+Tune the message to the croc brain of the target.
+- Simplicity can come across as naive, but focus on describing concrete things like relationships between people.
+  This is high-level enough that it will not engage cold cognitions or threaten the croc brain.
+ 
+Attention = Desire (anticipation of reward) + Tension (fear of loss, introduce consequences)
+- Attention is high when novelty is high.
+- Push/pull patterns to increase tension and desire
+- The pitch narrative is a series of tension loops.
+- When the tension is released and attention is lost the pitch is over.
+- Desire eventually becomes fear, so keep the pitch short.
+
+Must haves:
+- Numbers and projections 
+  - This should demonstrate your skill at budgeting (a difficult, precise skill),
+    not your skill at projecting (a simple, inaccurate skill).
+- Competition
+  - How easy is it for new competitors to enter?
+  - How easy is it for customers to switch TO you and AWAY from you?
+- Secret sauce
+  - Your competitive advantage.
+  - Phrasing it this way frames you as the prize.
+
+### 4.3. Offer the deal (2 mins)
+Describe what they get if they do business with you
+- What you will deliver, when, and how.
+- What are their roles, responsibilities and next steps.
+
+### 4.4. Stack hot cognition frames (3 mins)
