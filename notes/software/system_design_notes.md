@@ -25,7 +25,7 @@ Support features: features that help the user solve their problem more convenien
 What the system should handle.
 
 >**Interview tips**
-> - Identify the nonfunctional requirements the interviewer cares most about
+> - Identify the non-functional requirements the interviewer cares most about
 > - Show awareness of system attributes, trade-offs and user experience
 
 System analysis:
@@ -461,6 +461,52 @@ Endpoints:
 **System design:-**
 User flows for each of the required functional requirements.
 ![url_shortener_system.png](../_images/system_design/url_shortener_system.png)
+
+### 8.3. Dropbox file sharing
+**Requirements engineering**
+Requirements gathering:
+- Read-heavy
+- Distributed
+- Data consistency is more important than availability - files should be consistent for all users
+
+Core functional requirements:
+1. A user can upload a file to the server
+2. A user can download their files from the server
+
+Secondary functional requirements:
+1. A user can see a history of files uploaded and downloaded
+2. A user can see who has downloaded a specific file and when
+
+Non-functional requirements:
+1. Consistency - data should be consistent across users and devices
+2. Resilience - customer data should never be lost
+3. Minimal latency
+4. Compatibility across different devices
+5. Security - multi-tenancy; customer data should be separate of one another
+
+Questions to determine scale:
+1. Daily active users
+2. Peak active users - what events lead to a spike?
+3. Interactions per user - how many file syncs, how many files does a user store
+4. Request size - how large are files?
+5. Read/write ratio
+6. Replication factor
+
+**Capacity estimation**
+Throughput
+- Peak write RPS = 2 peak load ratio * 10^8 users * 2 files/day / 10^5 seconds = 4000 RPS
+- Peak read RPS = 10 read/write ration * 4000 write RPS = 40000 RPS
+- Peak total RPS = 44000 RPS
+
+Bandwidth
+- Write bandwidth = 4000 Write RPS * 100 kB Request size = 400 MB/s
+- Read bandwidth = 40000 Read RPS * 100 kB request size = 4 GB/s
+- Total bandwidth = Write bandwidth + Read bandwidth = 4.4 GB/s
+
+Storage
+- Storage capacity = 5*10^8 Total users * 100 files per user * 1MB File Size * 3 Replication factor = 15*10^10 MB = 15000 TB
+
+**Data model**
 
 
 ## References

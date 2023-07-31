@@ -26,6 +26,8 @@ To Do:
 - Strategy - startup bible book
 - Negotiating - never split the difference book and masterclass; influence the psychology of persuasion by Robert Cialdini
 - Consulting business book
+
+Backlog:
 - Operations - the goal by Eliyahu Goldratt
 - Leadership - teams of teams by Stanley mchrystal; Start with Why: How Great Leaders Inspire Everyone to Take Action by Simon Sinek
 - Networking - how to be a power connector by Judy Robinett
@@ -56,7 +58,7 @@ Done:
 In progress:
 - Kalman filter book
 
-To Do:
+Backlog:
 - RNNs?
 - https://greenteapress.com/wp/think-complexity-2e/
 
@@ -74,7 +76,7 @@ Backlog:
 - https://www.udacity.com/course/learn-spark-at-udacity--ud2002
 
 ### Interview prep
-To Do:
+Backlog:
 - https://www.udacity.com/course/refresh-your-resume--ud243
 - https://www.udacity.com/course/data-science-interview-prep--ud944
 - https://www.udacity.com/course/machine-learning-interview-prep--ud1001
