@@ -670,6 +670,7 @@ Neural networks:
 - Udemy course: https://www.udemy.com/course/complete-tensorflow-2-and-keras-deep-learning-bootcamp
 - Heuristics for choosing hidden layers https://stats.stackexchange.com/questions/181/how-to-choose-the-number-of-hidden-layers-and-nodes-in-a-feedforward-neural-netw
 - Alternatives to the deprecated model predict for different classification problems https://stackoverflow.com/questions/68776790/model-predict-classes-is-deprecated-what-to-use-instead
+- MIT course https://openlearninglibrary.mit.edu/courses/course-v1:MITx+6.036+1T2019/course/
 
 CNNs:
 - Image kernels explained https://setosa.io/ev/image-kernels/
@@ -680,11 +681,12 @@ RNNs:
 - Wikipedia page contains the equations of LSTMs and peepholes https://en.wikipedia.org/wiki/Long_short-term_memory
 - LSTMs vs GRUs https://datascience.stackexchange.com/questions/14581/when-to-use-gru-over-lstm 
 - Worked example of LSTM http://blog.echen.me/2017/05/30/exploring-lstms/
+- RNN cheatsheet https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-recurrent-neural-networks
 
 NLP:
 - The unreasonable effectiveness of RNNs, essay on RNNs applied to NLP http://karpathy.github.io/2015/05/21/rnn-effectiveness/
 - Sparse vs dense categorical crossentropy loss function https://datascience.stackexchange.com/questions/41921/sparse-categorical-crossentropy-vs-categorical-crossentropy-keras-accuracy
 
 GANs:
-- buffer_size argument in tensorflow rpefetch and shuffle https://stackoverflow.com/questions/46444018/meaning-of-buffer-size-in-dataset-map-dataset-prefetch-and-dataset-shuffle
+- buffer_size argument in tensorflow prefetch and shuffle https://stackoverflow.com/questions/46444018/meaning-of-buffer-size-in-dataset-map-dataset-prefetch-and-dataset-shuffle
 - Mode collapse https://www.quora.com/What-does-it-mean-if-all-produced-images-of-a-GAN-look-the-same

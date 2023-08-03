@@ -154,6 +154,16 @@ System diagrams: arrows point in direction of user flow (not data flow)
 
 
 ## 6. Design discussion
+Types of questions:
+- NFR questions
+  - How to achieve scalability
+    - Identify each bottleneck and remedy it
+  - How to improve resiliency
+- Justification question
+  - Choice of components, e.g. what would change if you changed block storage for object storage or relational database
+  - Additional components, e.g. is there a use case for a message queue and where
+- Extension questions
+  - Additional functional requirements not in the original scope
 
 
 ## 7. System components deep-dive
@@ -507,6 +517,29 @@ Storage
 - Storage capacity = 5*10^8 Total users * 100 files per user * 1MB File Size * 3 Replication factor = 15*10^10 MB = 15000 TB
 
 **Data model**
+Users: Store Ids for the files that belong to them
+
+Files: Metadata on the owner, file edit history, filename, size, chunks that comprise the file, version history
+
+**API Design**
+Endpoints:
+- compareHashes(fileId: str, chunkHashes: list)
+  - Takes a file ID and a list of chunk hashes and returns a list of the hashes that need resyncing .
+  - response code 200, {syncChunks: [Hash,...]}
+- uploadChange(fileId: str, chunks: list)
+  - Upload the chunks to resync the file
+  - response code 200, {message: "Chunks uploaded successfully"}
+- requestUpdate(fileId: str, chunkHashes: list)
+  - Update the local version of the file to match that on the server.
+  - response code 200, {chunks: [Chunk,...]}
+
+**System Design**
+![dropbox_design.png](../_images/system_design/dropbox_design.png)
+
+**Design Discussion**
+- What can we do to achieve a scalable design?
+  - Identify bottlenecks and remedy each.
+- What can we do to achieve resiliency?
 
 
 ## References
