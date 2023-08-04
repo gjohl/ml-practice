@@ -1,5 +1,4 @@
 ## Current
-- Pitching
 - System design
 - Kalman filter
 
@@ -9,6 +8,8 @@
 - Software architecture
 - Marketing
 - Public speaking
+- Pitching
+- SaaS
 
 
 ## Skills
@@ -16,16 +17,16 @@
 Done:
 - Marketing - 1 page marketing plan; 22 immutable laws of marketing?
 - Public speaking - TED talk book. Steal the show by Michael Port?
+- Pitching - Pitch Anything by Oren Klaff
+- SaaS: Start small stay small; SaaS playbook
 
 In Progress:
-- Pitching - Pitch Anything by Oren Klaff
+- Consulting business book 
 - Sales - Spin selling by Neil Rackham; Founder Sales.
 
 To Do:
-- SaaS: Start small stay small; SaaS playbook
 - Strategy - startup bible book
 - Negotiating - never split the difference book and masterclass; influence the psychology of persuasion by Robert Cialdini
-- Consulting business book
 
 Backlog:
 - Operations - the goal by Eliyahu Goldratt

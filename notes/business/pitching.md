@@ -65,7 +65,13 @@ Shock -> frame control -> local star power -> hook point -> leave
 
 
 ## 4. Pitching the big idea
+Every pitch should tell a story.
+
 Four sections of the pitch:
+1. Introduce yourself and the big idea (5 mins)
+2. Explain the budget and secret sauce (10 mins)
+3. Offer the deal (2 mins)
+4. Stack hot cognition frames (3 mins)
 
 ### 4.1. Introduce yourself and the big idea (5 mins)
 Keep the pitch short - 20 mins.
@@ -128,4 +134,90 @@ Describe what they get if they do business with you
 - What you will deliver, when, and how.
 - What are their roles, responsibilities and next steps.
 
-### 4.4. Stack hot cognition frames (3 mins)
+
+## 5. Stack hot cognition frames (3 mins)
+Propose something concrete and actionable in such a compelling way that the target wants to chase it.
+Don't wait for the target to evaluate you on the spot at the end of the pitch as that triggers cold cognitions. 
+Pile up the hot cognitions instead. 
+
+A hot cognition is emotional rather than analytical. 
+- You decide that you like something before you understand it.
+- Data is used to justify decisions after the fact.
+- Hot cognitions are generally unavoidable; you may be able to control the expression of emotion, but the initial experience is still there.
+- Hot cognitions tend to be instant and enduring.
+- Hot vs cold cognitions can be characterised by spinach vs chocolate - you know one is good for you but you want the other anyway.
+- Hot cognitions are "knowing" something through feeling it, cold cognitions are "knowing something through evaluating it."
+
+Stacking frames.
+- We want to stack frames to create "wanting", an emotional response
+- This is not the same as getting the target to "like" us, as that is a slow, intellectual cold cognition.
+- Appealing to the analytical brain can only trigger a "like"; we want to trigger a "want" in the croc brain.
+
+The 4 frame stack of hot cognitions:
+1. The intrigue frame
+   - A story where most important things are who it happened to and how the characters reacted to their situation.
+   - The events don't need to be extreme but the characters' reactions should be.
+   - A narrative that feels correct in time with convey a strong sense of truth and accuracy.
+   - "Man in the jungle" formula - Put a man in the jungle; have beasts attack him; will he get to safety?; get the man to the edge of the jungle but don't get him out of it (cliffhanger)
+2. The prize frame
+   - Position yourself as the most important party in the deal. Conviction is key.
+   - "I am the prize. You are trying to impress me. You are trying to win my approval."
+3. The time frame
+   - This creates a scarcity bias that triggers fear that triggers action.
+   - Extreme time pressure feels forced and cutrate. There is a balance between pressure and fairness; there should be a real-world time constraint.
+4. The moral authority frame
+
+Once the frame stacking is complete, you have the target's attention for about 30 seconds.
+
+
+## 6. Eradicating neediness
+Validation-seeking behaviour (i.e. neediness) is the number one deal killer.
+- Neediness is a threat signal, it triggers fear and uncertainty in the target which triggers self-protection.
+
+Avoid "soft closes" aiming to seek validation, e.g. "So what do you think so far?", "Do you still think this is a good deal?"
+
+Causes of neediness:
+- Anxiety and insecurity turn to fear, so you resort to acceptance-seeking behaviour to confirm that you're still "part of the pack"
+- Response to disappointment is to seek validation
+- We want something only the target can give us
+- We need cooperation from the target, and the lack of cooperation causes anxiety
+- We believe the target can make us feel good by accepting our offer
+
+Counteracting validation-seeking behaviours:
+1. Want nothing
+2. Focus only on things you do well
+3. Announce your intention to leave - time frame. When you finish the pitch, withdraw and deny your audience; this creates a prize frame.
+
+Mantra: "I don't need these people, they need me. I am the prize".
+
+Example:
+1. Time frame - "The deal will be fully subscribed in the next 10 days".
+2. Power frame - "We don't need VC money but want a big name on cap sheet for later IPO"
+3. Prize frame - "Are you really the right investor for this? We need to know more about the relationships and value you can bring."
+
+
+## 8. Closing thoughts
+You are not pushing, you are interacting with people using basic rules of social dynamics.
+
+Croc brain:
+- Boring: Ignore it
+- Dangerous? Fight it or run
+- Complicated? Radically summarise
+
+The presenter's problem boils down to deciding which information to include. It is not like an engineering problem where more information is better.
+
+Three key insights:
+1. Appeal to the croc brain
+2. Control frames
+3. Use humour - this is not to relieve tension but to signal that you are so confident that you're able to play around a little
+
+If the pitch stops being fun, you're doing it wrong.
+
+Steps to learning the method:
+1. Recognise beta traps; anything designed to control your behaviour
+2. Step around beta traps
+3. Identify social frames
+4. Initiate frame collisions with safe targets - always with good humour and "a twinkle in your eye"
+5. Practice the push/pull of small acts of defiance and denial
+
+The only rule is that you make the rules that others follow.
