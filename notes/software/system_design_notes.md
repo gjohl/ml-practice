@@ -123,11 +123,66 @@ Storage capacity in 5 years = Storage capacity per second * 2*10^8
 
 
 ## 3. Data modeling
-Entities, attributes, relations.
+Key concepts are: entities, attributes, relations.
+
+Optimisation discussions are anchored by the data model.
+Relational databases: denormalization, SQL tuning, sharding, federation
+Non-relational databases: indexing, caching
+
+The data model is not a full-blown data schema (which only applies to relational databases) but a more informal, high-level version.
+
+Must haves:
+1. Derive entities and attributes.
+2. Draw connections between entities.
+Then:
+3. Select a database based on the requirements
+4. Extend data model to a proper data schema
+5. Identify bottlenecks and apply quick fixes
+Later:
+6. Defer any detailed discussions to the design discussion section.
+
+### 3.1. Entities and attributes
+Entities are "things" with a distinct and independent existence, e.g. users, files, tweets, posts, channels.
+Create a unique table for each entity.
+
+Attributes describe properties of an entity, e.g. a user's name, date of birth.
+These are the fields in the table of that entity.
+
+>**Interview tips**
+> - Do not focus on irrelevant details
+> - Do not miss any critical functionality
+> - Double check all tables after you extract all info from requirements
+
+### 3.2. Relations
+Extract connections between entities from the requirements.
+Relationships can be one-to-one, one-to-many or many-to-many.
 
 
 ## 4. API design
-Endpoints with their parameters, response and status codes.
+Specify the API endpoints with:
+- Function signature
+- Parameters
+- Response and status codes
+
+This specifies a binding contract between the client and the application server.
+There can be APIs between every system component, but just focus on the client/server interface.
+
+Process:
+1. Revisit the functional requirements
+2. Derive the goal of each endpoint
+3. Derive the signature from the goal and the inputs from the data model
+4. Define the response outputs
+
+Naming conventions.
+Use HTTP request types in the call signature where appropriate: GET, POST, PUT, PATCH, DELETE
+
+>**Interview tips**
+> - Avoid vague inputs
+> - Don't add extra parameters that are out of scope
+> - Avoid redundant parameters
+> - Don't miss any parameters
+> - Confirm the output repsonse satisfies the requirements
+> - Identify inefficiencies of the data structure
 
 
 ## 5. System design
@@ -360,6 +415,8 @@ Limitations:
 
 #### Document-based
 A subclass of key-value stores, which hold computer-readable documents, like XML or JSON objects.
+
+### 7.7. Video uploading
 
 
 ## 8. System design examples and discussion
