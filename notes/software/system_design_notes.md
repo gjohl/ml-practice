@@ -417,6 +417,37 @@ Limitations:
 A subclass of key-value stores, which hold computer-readable documents, like XML or JSON objects.
 
 ### 7.7. Video uploading
+Issues:
+- Massive files: 4TB for 4 hours of 4K video
+  - How can we reliably upload very large files?
+- Lots of different end-user clients/devices/connection speeds
+  - How can we process and store a range of versions/resolutions?
+
+Processing pipeline:
+![video_processing_pipeline.png](../_images/system_design/video_processing_pipeline.png)
+
+1. File chunker
+   - Same principle as the file-sharing problem.
+   - Split the file into chunks, then use checksums to determine that files are present and correct.
+   - If there is a network outage, we only need to send the remaining chunks.
+2. Content filter
+   - Check if the video complies with the platform's content policy wrt copyright, piracy, NSFW
+3. Transcoder
+   - Data is decoded to an uncompressed format
+   - This will fan out in the next step to create multiple optimised versions of the file
+4. Quality conversion
+   - Convert the uncompressed file into multiple different resolution options.
+
+Architecture considerations:
+- Wait for the full file to upload before processing? Or process each chunk as it is uploaded?
+- An upload service persists chunks to a database. Object store is a good choice as in the file-sharing example.
+- Once a chunk is ready to be processed, it can be read and placed in the message queue for the processing pipeline.
+- The processing pipeline handles fixed-size chunks, so the hardware requirements are known ahead of time.
+  A chunk can be processed as soon as a hardware unit becomes available.
+
+![video_upload_architecture.png](../_images/system_design/video_upload_architecture.png)
+
+### 7.8. Video streaming
 
 
 ## 8. System design examples and discussion
