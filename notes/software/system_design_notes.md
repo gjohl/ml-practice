@@ -448,6 +448,53 @@ Architecture considerations:
 ![video_upload_architecture.png](../_images/system_design/video_upload_architecture.png)
 
 ### 7.8. Video streaming
+The challenges are similar to that of file-sharing, as this is essentially large files being transferred. 
+Latency and processing power of the end-user device. 
+
+Two main transfer protocols:
+- UDP
+- TCP
+
+#### UDP
+A connection-less protocol.
+Nodes do NOT establish a stable end-to-end connection before sending data.
+Instead, each packet has its destination address attached so the network can route it to the correct place.
+
+Advantages:
+- Fast
+- Packets are routed independently so if some are lost the others can still reach their destination
+
+Disadvantages:
+- No guarantee that data will arrive intact.
+
+Use cases:
+- Low-latency applications like video conferencing or gaming.
+- Not suitable for movie or audio streaming, as missing bits cannot be tolerated.
+
+#### TCP
+A connection is established between 2 nodes.
+The nodes agree on certain parameters before any data is transferred.
+Parameters: IP addresses of source and destination, port numbers of source and destination. 
+
+Three-way handshake establishes the connection:
+1. Sender transfers their sequence number to the Receiver.
+2. Receiver acknowledges and sends its own sequence number.
+3. Sender acknowledges.
+
+Advantages:
+- Reliability; guarantees delivery and receives acknowledgements before further packets are sent.
+- Receiver acknowledgements ensure the receiver is able to process/buffer the data in time before more packets are sent.
+
+Disadvantages:
+- Slower due to error checking and resending lost packets.
+- Requires three-way handshake to establish connection which is slower.
+
+Use cases:
+- Media streaming (HTTP live streaming or MPEG-DASH)
+
+Adaptive bitrate streaming
+- TCP adjusts transmission speed in response to network conditions
+- When packet loss is detected, smaller chunks are sent at a lower transmission speed. The lower resolution file can be sent in this case.
 
 
 ## 8. System design examples and discussion
