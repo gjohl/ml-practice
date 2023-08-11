@@ -497,6 +497,30 @@ Adaptive bitrate streaming
 - When packet loss is detected, smaller chunks are sent at a lower transmission speed. The lower resolution file can be sent in this case.
 
 
+### 7.9. Cache and CDN
+Perceived latency = Network latency + System latency
+
+#### Cache
+Caching is the process of storing copies of frequently accessed data in a temporary storage location. 
+
+Caches utilise the difference in read performance between memory and storage.
+Times to fetch 1MB from:
+- HDD: 3 ms
+- SSD: 0.2 ms
+- RAM: 0.01 ms
+
+When a user requests data it first requests from the cache
+- Cache HIT: If the data is in the cache, return it
+- Cache MISS: If the data is not in the cache, pass the request to the database, update the cache and return the data 
+
+A cache can grow stale over time.
+There are 2 common approaches to mitigate this:
+1. Set up a time-to-live (TTL) policy within the cache
+  - Trade off between short TTL (fresh data but worse performance) vs long TTL (data can be stale)
+2. Implement active cache invalidation mechanism
+  - Complicated to implement. Requires an "invalidation service" component to monitor and read from the database, then update the cache when necessary.
+
+
 ## 8. System design examples and discussion
 ### 8.1. Todo App
 An app that lets a user add and delete items from a todo list.
