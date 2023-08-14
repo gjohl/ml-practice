@@ -1,5 +1,7 @@
 ## Current
-- System design
+- AWS
+- Fast AI
+- Sales
 - Kalman filter
 
 ## Done
@@ -10,6 +12,8 @@
 - Public speaking
 - Pitching
 - SaaS
+- Consulting
+- System design
 
 
 ## Skills
@@ -19,14 +23,15 @@ Done:
 - Public speaking - TED talk book. Steal the show by Michael Port?
 - Pitching - Pitch Anything by Oren Klaff
 - SaaS: Start small stay small; SaaS playbook
+- Consulting business book 
 
 In Progress:
-- Consulting business book 
-- Sales - Spin selling by Neil Rackham; Founder Sales.
+- Sales - Spin selling by Neil Rackham
 
 To Do:
 - Strategy - startup bible book
 - Negotiating - never split the difference book and masterclass; influence the psychology of persuasion by Robert Cialdini
+- Sales - Founder Sales
 
 Backlog:
 - Operations - the goal by Eliyahu Goldratt
@@ -38,13 +43,13 @@ Backlog:
 Done:
 - SQL - Udemy course
 - Software architecture - Udemy course
+- System design - Udemy course
 
 In progress:
-- System design - Udemy course
-- Docker - Udemy course
+- AWS solutions architect Udemy course
 
 To Do:
-- AWS solutions architect Udemy course
+- Docker - Udemy course
 
 Backlog:
 - Game development - Unity udemy course
@@ -57,6 +62,7 @@ Done:
 - Deep learning / Tensorflow - Udemy course
 
 In progress:
+- Fast AI course
 - Kalman filter book
 
 Backlog:
