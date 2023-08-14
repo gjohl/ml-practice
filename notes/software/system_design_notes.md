@@ -555,6 +555,26 @@ These are specialised NoSQL databases with the following benefits:
 - Full-text search means you can suggest autocomplete results and related queries as the user types
 - Indexing allows faster search performance on big data.
 
+The database is structures as a hashmap where the inverted index points at documents.
+- Document - Represents a specific entity, like a row in a relational database
+- Inverted index - Maps from content to the documents that include it. The inverted index splits each document into individual search terms and makes each point to the document itself.
+- Ranking algorithm - Produces a list of possibly relevant documents. Additional factors may impact this, like a user's previous search history.
+
+The database is a dictionary of {search_term_id: [document_ids, ...]}
+![inverted_index.png](../_images/system_design/inverted_index.png)
+
+Popular implementations: Lucene, Elastic search, Apache solr, Atas search (MongoDB), Redis search.
+
+Benefits of search engine databases:
+- Scalable - NoSQL so scale horizontally
+- Schemaless
+- Works out of the box - just need ot decide upfront what attributes should be searchable.
+
+Limitations:
+- No ACID guarantees.
+- Not efficient at reading/writing data, so requires another database to manage state. 
+  - Maintaining consistency between the main database and the search engine database can be tricky.
+- Some SQL databases have full-text search so may not require a dedicated search engine database.
 
 
 ## 8. System design examples and discussion
@@ -743,3 +763,4 @@ Endpoints:
 - Capacity estimation cheat sheet in _resources folder
 - Database book - "Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems" by Martin Kleppmann
 - Rsync algorithm https://openresearch-repository.anu.edu.au/bitstream/1885/40765/3/TR-CS-96-05.pdf
+- Search Engines Information Retrieval in Practice book https://ciir.cs.umass.edu/irbook/
