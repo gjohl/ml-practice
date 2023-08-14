@@ -490,7 +490,7 @@ Disadvantages:
 - Requires three-way handshake to establish connection which is slower.
 
 Use cases:
-- Media streaming (HTTP live streaming or MPEG-DASH)
+- Media streaming (HTTP live-streaming or MPEG-DASH)
 
 Adaptive bitrate streaming
 - TCP adjusts transmission speed in response to network conditions
@@ -519,6 +519,42 @@ There are 2 common approaches to mitigate this:
   - Trade off between short TTL (fresh data but worse performance) vs long TTL (data can be stale)
 2. Implement active cache invalidation mechanism
   - Complicated to implement. Requires an "invalidation service" component to monitor and read from the database, then update the cache when necessary.
+
+Application-level caching:
+Insert caching logic into the application's source code to temporarily store data in memory.
+
+Two approaches to application-level caching:
+1. Query-based implementation
+   - Hash the query as a key and store the value against the key in a key-value store.
+   - Limitations: hard to delete cached result with a complex query; if a cell changes then all cached query which might include it need updating.
+2. Object-based implementation
+   - The result of a query is stored as an object
+   - Benefits: only one serialisation/deserialisation overhead when reading/writing; complexity of object doesn't matter, serialized objects in cache can be used by multiple applications.
+
+Popular implementations: Redis, Memcache, Hazlecast
+
+#### Content Delivery Network (CDN)
+A network of caching layer in different locations (Points of Presence, PoPs).
+Full data is stored on SSD and most frequently accessed data is stored in RAM.
+
+Don't cache dynamic or time-sensitive data.
+
+Invalidating the cache.
+You can manually update the CDN, but there may be additional caches at the ISP- and browser-level which would still serve 
+stale data.
+![CDN_invalidation.png](../_images/system_design/CDN_invalidation.png)
+
+Approaches to invalidating cache:
+- Caching headers - set a time when an object should be cleared, e.g. max-age=86400 caches for a day.
+- Cache busting - change the link to all files and assets, so the CDN treats them like new files.
+
+
+### 7.10 Search engine database
+These are specialised NoSQL databases with the following benefits:
+- Can match even with typos or non-exact matches
+- Full-text search means you can suggest autocomplete results and related queries as the user types
+- Indexing allows faster search performance on big data.
+
 
 
 ## 8. System design examples and discussion
