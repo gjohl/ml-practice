@@ -293,7 +293,7 @@ given an input string, e.g. ['h', 'e', 'l', 'l'],
 predict the sequence shifted by one character, e.g. ['e', 'l', 'l', 'o']
 
 The embedding, GRU and dense layers work on the sequence in the following way:
-![NLP_layers.png](../_images/ML_notes/NLP_layers.png)
+![NLP_layers.png](../_images/tensorflow/NLP_layers.png)
 
 Steps:
 1. Read in text data
