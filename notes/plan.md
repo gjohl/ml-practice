@@ -1,12 +1,12 @@
 ## Current
-- AWS
 - Fast AI
 - Sales
+- AWS
 - Kalman filter
 
 ## Done
 - SQL
-- Deep learning
+- Deep learning (Tensorflow)
 - Software architecture
 - Marketing
 - Public speaking
@@ -53,26 +53,27 @@ To Do:
 
 Backlog:
 - Game development - Unity udemy course
-- Cracking the coding interview?
-- Data structures and algorithms? https://allendowney.github.io/DSIRP/
+- Cracking the coding interview
+- Data structures and algorithms https://allendowney.github.io/DSIRP/
 - Devops - Continuous deployment book
 
 ### Engineering/maths
 Done:
-- Deep learning / Tensorflow - Udemy course
+- Deep learning (Tensorflow) - Udemy course
 
 In progress:
 - Fast AI course
 - Kalman filter book
 
 Backlog:
+- Computational linear algebra https://www.fast.ai/posts/2017-07-17-num-lin-alg.html
+- Timeseries forecasting: https://www.kaggle.com/learn/time-series?rvi=1
 - RNNs?
 - https://greenteapress.com/wp/think-complexity-2e/
 
 ### Stats
 Backlog:
 - Intro to probability book
-- Timeseries forecasting: ETS, ARIMA https://www.udacity.com/course/time-series-forecasting--ud980
 - Classical stats: t-stat, ANOVA https://www.udacity.com/course/intro-to-inferential-statistics--ud201
 - Filters https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373
 
