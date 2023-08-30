@@ -122,3 +122,12 @@ Keep an eye on the validation error to check overfitting.
 
 
 ## 3. Natural language processing
+Options for cloud environments: Kaggle, Colab, Paperspace 
+
+Comparison of performance vs training time for different image models: https://www.kaggle.com/code/jhoward/which-image-models-are-best/
+Resnet and convnext are generally good to start with.
+The criteria we generally care about are:
+1. How fast are they
+2. How much memory do they use
+3. How accurate are they
+
