@@ -5,7 +5,7 @@ https://course.fast.ai/
 https://github.com/fastai/fastbook/tree/master
 
 
-## 1. Intro
+## 1. Introduction to image classification models
 
 Ethics course https://ethics.fast.ai/
 
@@ -65,4 +65,60 @@ weights ----|                         |
 ```
 
 
-## 2.
+## 2. Deployment
+It can be useful to train a model on the data BEFORE you clean it
+- Counterintuitive!
+- The confusion matrix output of the learner gives you a good intuition about which classifications are hard
+- `plot_top_losses` shows which examples were hardest for the model to classify. 
+  This can find (1) when the model is correct but not confident, and (2) when the model was confident but incorrect
+- `ImageClassifierCleaner` shows the examples in the training and validation set ordered by loss, so we can choose to keep, reclassify or remove them
+
+For image resizing, random resize crop can often be more effective.
+- Squishing can result in weird, unrealistic images
+- Padding or mirroing can add false information that the model will erroneously learn
+- Random crops give different sections of the image which acts as a form of data augmentation.
+- `aug_transforms` can be use for more sophisticated data augmentation like warping and recoloring images.
+
+A website for quizzes based on the book: www.aiquizzes.com
+
+Hugging face spaces hosts models with a choice of pre-canned interfaces (Gradio in the example in the lecture)
+to quickly deploy a model to the public. Streamlit is an alternative to Gradio that is more flexible.
+https://huggingface.co/spaces
+
+**Saving a model**
+Once you are happy with the model you've trained, you can pickle the learner object and save it.
+```
+learn.export('model.pkl')
+```
+
+Then you can add the saved model to the hugging face space.
+To use the model to make predictions
+Any external functions you used to create the model will need to be instantiated too. 
+```
+learn = load_learner('model.pkl')
+learn.predict(image)
+```
+
+Gradio requires a dict of classes as keys and probabilities (as floats not tensors) as the values.
+To go from the Gradio prototype to a production app, you can view the Gradio API from the huggingface space which will show you the API.
+The API exposes an endpoint which you can then hit from your own frontend app.
+
+Github pages is a free and simple way to host a public website.
+See this repo as an example of a minimal example html website which issues GET requests to the Gradio API https://github.com/fastai/tinypets
+
+To convert a notebook to a python script, you can add `#|export` to the top of any cells to include in the script,
+then use:
+```
+from nbdev.export import notebook2script
+notebook2script('name_of_output_file.py')
+```
+
+Use `#|default_exp app` in the first cell of the notebook to set the default name of the exported python file.
+
+How to choose the number of epochs to train for?
+Whenever it is "good enough" for your use case.
+If you need to train for longer, you may need to use data augmentation to prevent overfitting.
+Keep an eye on the validation error to check overfitting.
+
+
+## 3. Natural language processing
