@@ -1,3 +1,4 @@
+duckduckgo_search
 jupyterlab
 lxml
 matplotlib
@@ -10,6 +11,3 @@ scipy
 scikit-learn
 seaborn
 tensorflow
-torch
-torchvision
-torchaudio
