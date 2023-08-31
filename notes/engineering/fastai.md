@@ -126,8 +126,77 @@ Options for cloud environments: Kaggle, Colab, Paperspace
 
 Comparison of performance vs training time for different image models: https://www.kaggle.com/code/jhoward/which-image-models-are-best/
 Resnet and convnext are generally good to start with.
+The best practice is to start with a "good enough" model with a quick training time, so you can iterate quickly.
+Then as you get further on with your research and need a better model, you can move to a slower, more accurate model.
 The criteria we generally care about are:
 1. How fast are they
 2. How much memory do they use
 3. How accurate are they
 
+A learner object contains the pre-processing steps and the model itself.
+
+**Fit a quadratic function** 
+How do we fit a function to data? An ML model is just a function fitted to data. Deep learning is just fitting an infinitely flexible model to data.
+In [this notebook](https://www.kaggle.com/code/gurpreetjohl/how-does-a-neural-net-really-work) there is an interactive cell to 
+fit a quadratic function to some noisy data: `y = ax^2 +bx + c`
+We can vary a, b and c to get a better fit by eye.
+We can make this more rigorous by defining a loss function to quantify how good the fit is.
+In this case, use the mean absolute error `mae = mean(abs(actual - preds))`
+We can then use stochastic gradient descent to autome the tweaking of a, b and c to minimise the loss.
+
+We can store the parameters as a tensor, then pytorch will calculate gradients of the loss function based on that tensor.
+```
+abc = abc = torch.tensor([1.1,1.1,1.1]) 
+abc.requires_grad_()  # Modifies abc in place so that it will include gradient calculations on anything which uses abc downstream
+loss = quad_mae(abc)  # loss uses abc so we will get the gradient of loss too
+loss.backward()  # Back-propagate the gradients
+abc.grad  # Returns a tensor of the loss gradients
+```
+
+We can then take a "small step" in the direction that will decrease the gradient. 
+The size of the step should be proportional to the size of the gradient.
+We define a learning rate hyperparameter to determine how much to scale the gradients by.
+```
+learning_rate = 0.01
+abc -= abc.grad * learning_rate
+loss = quad_mae(abc)  # The loss should now be smaller
+```
+
+We can repeat this process to take multiple steps to minimise the gradient.
+```
+for step in range(10):
+    loss = quad_mae(abc)
+    loss.backward()
+    with torch.no_grad():
+        abc -= abc.grad * learning_rate
+    print(f'step={step}; loss={loss:.2f}')
+```
+
+The learning rate should decrease as we get closer to the minimum to ensure we don't overshoot the minimum and increase the loss.
+A learning rate schedule can be specified to do this.
+
+
+**Fit a deep learning model**
+For deep learning, the premise is the same but instead of quadratic functions, we fit ReLUs and other non-linear functions.
+[Universal approximation theorem](https://en.wikipedia.org/wiki/Universal_approximation_theorem) states that this is infinitely
+expressive if enough ReLUs (or other non-linear units) are combined.
+This means we can learn any computable function.
+
+A ReLU is essentially a linear function with the negative values clipped to 0
+```
+def relu(m,c,x):
+    y = m * x + c
+    return np.clip(y, 0.)
+```
+
+This is all that deep learning is! All we need is:
+1. A model - a bunch of ReLUs combined will be flexible
+2. A loss function - mean absolute error between the actual data values and the values predicted by the model
+3. An optimiser - stochastic gradient descent can start from random weights to incrementally improve the loss until we get a "good enough" fit
+
+We just need enough time and data.
+There are a few hacks to decrease the time and data required:
+- Data augmentation
+- Running on GPUs to parallelise matrix multiplications
+- Convolutions to skip over values to reduce the number of matrix multiplications required
+- Transfer learning - initialise with parameters from another pre-trained model instead of random weights.
