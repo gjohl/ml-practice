@@ -121,7 +121,7 @@ If you need to train for longer, you may need to use data augmentation to preven
 Keep an eye on the validation error to check overfitting.
 
 
-## 3. Natural language processing
+## 3. How does a neural net learn?
 Options for cloud environments: Kaggle, Colab, Paperspace 
 
 Comparison of performance vs training time for different image models: https://www.kaggle.com/code/jhoward/which-image-models-are-best/
@@ -200,3 +200,10 @@ There are a few hacks to decrease the time and data required:
 - Running on GPUs to parallelise matrix multiplications
 - Convolutions to skip over values to reduce the number of matrix multiplications required
 - Transfer learning - initialise with parameters from another pre-trained model instead of random weights.
+
+[This spreadsheet](https://docs.google.com/spreadsheets/d/1hma4bTEFuiS483djqE5dPoLlbsSQOTioqMzsesZGUGI/edit?usp=sharing)
+is a worked example of manually training a multivariate linear model, then extending that to a neural network summing two ReLUs. 
+
+
+## 4. Natural language processing
+NLP applications: categorising documents, translation, text generation.
