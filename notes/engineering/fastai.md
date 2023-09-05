@@ -207,3 +207,24 @@ is a worked example of manually training a multivariate linear model, then exten
 
 ## 4. Natural language processing
 NLP applications: categorising documents, translation, text generation.
+
+Using [Huggingface transformers](https://huggingface.co/docs/transformers/index) library for this lesson.
+It is now incorporated into the fastai library.
+
+ULMFit is an algorithm which uses fine-tuning, in this example to train a positve/negative sentiment classifier in 3 steps:
+1. Train an RNN on wikipedia to predict the next word. No labels required.
+2. Fine-tune this for IMDb reviews to predict the next word of a movie review. Still no labels required.
+3. Fine-tune this to classify the sentiment.
+
+Transformers have overtaken ULMFit as the state-of-the-art.
+
+Looking "inside" a CNN, the first layer contains elementary detectors like edge detectors, blob detectors, gradient detectors etc.
+These get combined in non-linear ways to make increasingly complex detectors. Layer 2 might combine vertical and horizontal edge detectors into a corner detector.
+By the later layers, it is detecting rich features like lizard eyes, dog faces etc. 
+See: https://arxiv.org/abs/1311.2901
+
+For the fine-tuning process, the earlier layers are unlikely to need changing because they are more general. So we only need to fine-tune (AKA re-train)
+the later layers.
+
+
+**Kaggle competition walkthrough**
