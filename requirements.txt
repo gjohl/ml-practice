@@ -1,4 +1,5 @@
 duckduckgo_search
+gradio
 jupyterlab
 lxml
 matplotlib
