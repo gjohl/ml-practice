@@ -7,6 +7,11 @@ https://github.com/fastai/fastbook/tree/master
 
 ## 1. Introduction to image classification models
 
+> Homework task:
+> 
+> Train an image classifier
+> https://github.com/gjohl/ml-practice/blob/master/ml-practice/notebooks/fastai/1_image_classifier.ipynb
+
 Ethics course https://ethics.fast.ai/
 
 Research on education:
@@ -66,6 +71,14 @@ weights ----|                         |
 
 
 ## 2. Deployment
+> Homework task:
+> 
+> Deploy a model to Huggingface Spaces
+> https://huggingface.co/spaces/GurpreetJohl/binary_image_classifier_vw_rr
+> 
+> Deploy a model to a Github Pages website
+> https://github.com/gjohl/vw_classifier
+
 It can be useful to train a model on the data BEFORE you clean it
 - Counterintuitive!
 - The confusion matrix output of the learner gives you a good intuition about which classifications are hard
@@ -122,6 +135,10 @@ Keep an eye on the validation error to check overfitting.
 
 
 ## 3. How does a neural net learn?
+> Homework task:
+> Recreate the spreadsheet to train a linear model and a neural network from scratch
+> https://docs.google.com/spreadsheets/d/1hma4bTEFuiS483djqE5dPoLlbsSQOTioqMzsesZGUGI/edit?usp=sharing
+
 Options for cloud environments: Kaggle, Colab, Paperspace 
 
 Comparison of performance vs training time for different image models: https://www.kaggle.com/code/jhoward/which-image-models-are-best/
@@ -206,6 +223,10 @@ is a worked example of manually training a multivariate linear model, then exten
 
 
 ## 4. Natural language processing
+> Homework:
+> 
+> Kaggle NLP pattern similarity notebook https://www.kaggle.com/code/gurpreetjohl/getting-started-with-nlp-for-absolute-beginners/edit
+
 NLP applications: categorising documents, translation, text generation.
 
 Using [Huggingface transformers](https://huggingface.co/docs/transformers/index) library for this lesson.
@@ -228,3 +249,77 @@ the later layers.
 
 
 **Kaggle competition walkthrough**
+
+https://www.kaggle.com/code/gurpreetjohl/getting-started-with-nlp-for-absolute-beginners/edit
+
+Reshape the input to fit a standard NLP task
+- We want to learn the similarity between two fields and are provided with similarity scores.
+- We concat the fields of interest (with identifiers in between). The identifiers themselves are not important, they just need to be consistent.
+- The NLP model is then a supervised regression task to predict the score given the concatendated string.
+
+`df['input'] = 'TEXT1: ' + df.context + '; TEXT2: ' + df.target + '; ANC1: ' + df.anchor`
+
+**Tokenization:**
+Split the text into tokens (words).
+Tokens are, broadly speaking, words.
+There are some caveats to that, as some languages like Chinese don't fit nicely into that model.
+We don't want the vocabulary to be too big.
+In practice, we tokenize into subwords.
+
+**Numericalization:**
+Map each unique token to a number. One-hot encoding.
+
+The choice of tokenization and numericalization depends on the model you use.
+Whoever trained the model chose a convention for tokenizing.
+We need to be consistent with that if we want the model to work correctly.
+
+**Models:**
+The Huggingface model hub contains thousands of pretrained models https://huggingface.co/models
+For NLP tasks, it is useful to choose a model that was trained on a similar corpus, so you can search the model hub.
+In this case, we search for "patent".
+
+Some models are general purpose, e.g. deberta-v3 used in the lesson.
+
+
+ULMFit handles large documents better as it can split up the document.
+Transformer approaches require loading the whole document into GPU memory, so struggle for larger documents.
+
+**Overfitting:**
+If a model is too simple (i.e. not flexible enough) then it cannot fit the data and be biased. Underfitting.
+
+If the model fits the data points too closely, it is overfitting.
+
+A good validation set, and monitoring validation error rather than training error as a metric, is key to avoiding overfitting.
+https://www.fast.ai/posts/2017-11-13-validation-sets.html
+
+Often people will default to using a random train/test split (this is what scikit-learn uses).
+This is a BAD idea very often.
+For time-series data, it's easier to infer gaps than it is to predict a block in the future. The latter is the more common task but a random split simulates the former, giving unrealistically good performance.
+For image data, there may be people, boats, etc that are in the training set but not the test set. By failing to have new people in the validation set, the model can learn things about specific people/boats that it can't rely on in practice.
+
+**Metrics vs loss functions:**
+Metrics are things that are human-understandable.
+Loss functions should be smooth and differentiable to aid in training.
+
+These can sometimes be the same thing, but not in general.
+For example, accuracy is a good metric in image classification.
+We could tweak the weights in such a way that it improves the model slightly, but not so much that it now correctly classifies a previously incorrect image.
+This means the metric function is bumpy, therefore a bad loss function.
+https://www.fast.ai/posts/2019-09-24-metrics.html
+
+AI can be particularly dangerous at confirming systematic biases, because it is so good at optimising metrics, so it will
+conform to any biases present in the training data. MAking decisions based on the model then reinforces those biases.
+- Goodhart's law applies: If a metric becomes a target it's no longer a good metric
+
+**Correlations**
+The best way to understand a metric is not to look at the mathematical formular, but to plot some data for which the metric
+is high, medium and low, then see what that tells you.
+
+After that, look at the equation to see if your intuition matches the logic.
+
+**Choosing a learning rate**
+Fast AI has a function to find a good starting point.
+Otherwise, pick a small value and keep doubling it until it falls apart.
+
+
+## 5. From scratch model
