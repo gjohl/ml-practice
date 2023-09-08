@@ -323,3 +323,74 @@ Otherwise, pick a small value and keep doubling it until it falls apart.
 
 
 ## 5. From scratch model
+Train a linear model from scratch in Python using on the Titanic dataset.
+Then train a neural network from scratch in a similar way.
+This is an extension of the spreadsheet approach to make a neural network from scratch in lesson 3.
+
+**Imputing missing values**
+Never throw away data.
+An easy way of imputing missing values is to fill them with the mode.
+This is good enough for a first pass at creating a  model.
+
+**Scaling values**
+Numeric values that can grow exponentially like prices or population sizes often have long-tailed distributions.
+An easy way to scale is to take log(x+1). The `+1` is just to avoid taking log of 0.
+
+**Categorical variables**
+One-hot encode any categorical variables.
+We should include an "other" category for each in case the validation or test set contains a category we didn't encounter in the training set.
+If there are categories with ony a small number of observations we can group them into an "other" category too.
+
+**Broadcasting**
+Broadcasting arrays together avoids boilerplate code to make dimensions match.
+https://numpy.org/doc/stable/user/basics.broadcasting.html
+https://tryapl.org/
+
+**Sigmoid final layer**
+For a binary classification model, the outputs should be between 0 and 1.
+If you train a linear model, it might result in negative values or values >1.
+This means we can improve the loss by just clipping to ensure they stay between 0 and 1.
+This is the idea behind the sigmoid function for output layers: smaller values will tend to 0 and larger values will tend to 1.
+In general, for any binary classification model, we should always have a sigmoid as the final layer.
+If the model isn't training well, it's worth checking that the final activation function is a sigmoid.
+
+Function: `y = 1 / (1+e^-x))`
+
+**Focus on input and output layers**
+In general, the middle layers of a neural network are similar between different problems.
+The input layer will depend on the data for our specific problem.
+The output will depend on the target for our specific problem.
+So we spend most of our time thinking about the correct input and output layers, and the hidden layers are less important.
+
+**Using a framework**
+When creating the models from scratch, there was a lot of boilerplate code to:
+- Impute missing values using the "obvious" method (fill with mode)
+- Normalise continuous variables to be between 0 and 1
+- One hot encode categorical variables
+- Repeat all of these steps in the same order for the test set
+
+The benefits of using a framework like fastai:
+- Less boilerplate, so the obvious things are done automatically unless you say otherwise
+- Repeating all of the feature engineering steps on the output is trivial with DataLoaders
+
+**Ensemble**
+Creating independent models and taking the mean of their predictions improves the accuracy.
+There are a few different approaches to ensembling a categorical variable:
+1. Take the mean of the predictions (binary 0 or 1)
+2. Take the mean of the probabilities (continuous between 0 and 1) then threshold the result
+3. Take the mode of the predictions (binary 0 or 1)
+
+In general the mean approaches work better but there's no rule as to why, so try all of them.
+
+
+## 6. Random forests
+It's worth starting with a random forest as a baseline model because "it's very hard to screw up".
+
+A random forest is an ensemble of trees.
+A tree is an ensemble of binary splits.
+`binary split -> tree -> forest`
+
+**Binary split**
+Pick a column of the data set and split the rows into two groups.
+Predict the outcome based just on that.
+For example, in the titanic dataset, pick the Sex column. This splits into male vs female. If we predict that all female passengers survived and all male passengers died, that's a reasonably accurate prediction.
