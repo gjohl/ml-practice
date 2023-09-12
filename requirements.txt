@@ -1,13 +1,13 @@
 duckduckgo_search
 gradio
 jupyterlab
+kaggle
 lxml
 matplotlib
 numpy
 pandas
 Pillow
 plotly
-pytorch
 scipy
 scikit-learn
 seaborn

@@ -223,7 +223,7 @@ is a worked example of manually training a multivariate linear model, then exten
 
 
 ## 4. Natural language processing
-> Homework:
+> Homework task:
 > 
 > Kaggle NLP pattern similarity notebook https://www.kaggle.com/code/gurpreetjohl/getting-started-with-nlp-for-absolute-beginners/edit
 
@@ -323,6 +323,16 @@ Otherwise, pick a small value and keep doubling it until it falls apart.
 
 
 ## 5. From scratch model
+> Homework task:
+> Recreate the  Jupyter notebook to train a linear model and a neural network from scratch
+> 
+> Then use the fast AI library to recreate the same model in less code
+> 
+> Read the numpy broadcasting rules
+> 
+> Read through Titanic notebooks
+ 
+
 Train a linear model from scratch in Python using on the Titanic dataset.
 Then train a neural network from scratch in a similar way.
 This is an extension of the spreadsheet approach to make a neural network from scratch in lesson 3.
