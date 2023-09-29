@@ -395,6 +395,7 @@ In general the mean approaches work better but there's no rule as to why, so try
 
 ## 6. Random forests
 It's worth starting with a random forest as a baseline model because "it's very hard to screw up".
+Decision trees only consider the ordering of data, so are not sensitive to outliers, skewed distributions, dummy variables etc.
 
 A random forest is an ensemble of trees.
 A tree is an ensemble of binary splits.
@@ -404,3 +405,19 @@ A tree is an ensemble of binary splits.
 Pick a column of the data set and split the rows into two groups.
 Predict the outcome based just on that.
 For example, in the titanic dataset, pick the Sex column. This splits into male vs female. If we predict that all female passengers survived and all male passengers died, that's a reasonably accurate prediction.
+
+A model which iterates through the variables and finds the best binary split is called a "OneR" or one rule model.
+This was actually the state-of-the-art in the 90s and performs reasonably well across a lot of problems.
+
+**Decision tree**
+This extends the "OneR" idea to two or more splits.
+E.g. if we first split by sex, then find the next best variable to split on to create a two layer tree.
+
+Leaf nodes are the number of terminating nodes in the tree. 
+OneR creates 2 leaf nodes.
+If we split one side again, we'll have 3 leaf nodes.
+If we split the other side, to create a balanced two layer tree, we'll have 4 leaf nodes.
+
+Gini is another measure of inequality, similar to the score used in the notebook to quantify how good a split was.
+Intuitively, this measures the likelihood that if you picked two samples from a group, how likely is it they'd be the same every time.
+If the group is all the same, the probability is 1. If every item is different, the probability is 0.
