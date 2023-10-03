@@ -421,3 +421,40 @@ If we split the other side, to create a balanced two layer tree, we'll have 4 le
 Gini is another measure of inequality, similar to the score used in the notebook to quantify how good a split was.
 Intuitively, this measures the likelihood that if you picked two samples from a group, how likely is it they'd be the same every time.
 If the group is all the same, the probability is 1. If every item is different, the probability is 0.
+
+**Random forest**
+The idea behind bagging is that if we have many unbiased, uncorrelated models, we can average their predictions to get an
+aggregate model that is better than any of them.
+Each individual model will overfit, so either be too high or too low for a given point, a positive or negative error term respectively.
+By combining multiple uncorrelated models, the error will average to 0.
+
+An easy way to get many uncorrelated models is to only use a random subset of the data each time. Then build a decision tree for each subset.
+This is the idea behind random forests.
+
+The error decreases with the number of tree, with diminishing returns.
+Jeremy's rule of thumb: improvements level off after about 30 and he doesn't often use >100.
+
+**Feature importance**
+A nice side effect of using decision trees is that we get feature importance plots for free.
+
+The idea is for each split of a decision tree, we can track the column used to split and the amount that the gini decreased by.
+If we loop through the tree and accumulate the "gini reduction" for each column, we have a metric of how important that column was
+in splitting the dataset.
+
+This makes random forests a useful first model when tackling a new big dataset, as it can give an insight into how useful each column is.
+
+**Out-of-bag error**
+For each tree, we trained on a subset of the rows. We can then see how each one performed on the held out data; this is the out-of-bag error per tree.
+We can average this over all of the trees to get an overall OOB error for the forest.
+
+**Partial dependence plots**
+These are not specific to random forests and can be applied to any ML model including deep neural networks.
+
+If we want to know how an independent variable affects the dependent variable, a naive approach would be to just plot them.
+But this could include a confounding variable.
+For example, the price of bulldozers increases over time, but driven by the presence of air conditioning which also increased over time.
+
+A partial dependence plot takes each row in turn and sets the column(s) of interest to the first value, say, year=1950.
+Then we predict the target variable using our model.
+Then repeat this for year=1951, 1952, etc.
+We can then average the target variable per year to get a view of how it depends on the independent variable, all else being equal.
