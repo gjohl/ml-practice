@@ -443,6 +443,11 @@ in splitting the dataset.
 
 This makes random forests a useful first model when tackling a new big dataset, as it can give an insight into how useful each column is.
 
+A comment on explainability, regarding feature importance compared to SHAP, LIME etc.
+These explain the _model_, so to be useful the model needs to be accurate.
+If you use feature importance from a bad model then the columns it claims are important might not actually be.
+So the usefulness of explainability techniques boils down to what models can they explain and how accurate are those models.
+
 **Out-of-bag error**
 For each tree, we trained on a subset of the rows. We can then see how each one performed on the held out data; this is the out-of-bag error per tree.
 We can average this over all of the trees to get an overall OOB error for the forest.
@@ -458,3 +463,12 @@ A partial dependence plot takes each row in turn and sets the column(s) of inter
 Then we predict the target variable using our model.
 Then repeat this for year=1951, 1952, etc.
 We can then average the target variable per year to get a view of how it depends on the independent variable, all else being equal.
+
+**Gradient boosting forests**
+We make multiple trees, but instead of fitting all to different data subsets, we fit to residuals.
+So we fit a very small tree (OneR even) to the data to get a first prediction. Then we calculate the error term.
+Then we fit another tree to predict the error term. Then calculate the second order error term. Then fit a tree to this, etc.
+
+Then our prediction is the SUM of these trees (rather than the average like with a random forest).
+This is "boosting"; calculating an error term then fitting another model to it.
+Contrast this with "bagging" which was when we calculate multiple models to different subsets of data and average them.
