@@ -472,3 +472,34 @@ Then we fit another tree to predict the error term. Then calculate the second or
 Then our prediction is the SUM of these trees (rather than the average like with a random forest).
 This is "boosting"; calculating an error term then fitting another model to it.
 Contrast this with "bagging" which was when we calculate multiple models to different subsets of data and average them.
+
+
+**Kaggle iterations**
+The focus should be:
+1. Create an effective validation set
+2. Iterate quickly to find changes which improve the validation set
+
+Train a simple model straight away, get a result and submit it.
+You can iterate and improve later.
+
+Rules of thumb on model selection by problem type:
+- For computer vision use CNNs, fine-tune a pre-trained model. See comparison of pre-trained models [here](https://www.kaggle.com/code/jhoward/the-best-vision-models-for-fine-tuning)
+  - If unsure which model to choose, start with (small) convnext.
+  - Different models can have big differences in accuracy so try a few small models from different families.
+  - Once you are happy with the model, try a size up in that family.
+- For tabular data, random forests will give a reasonably good results.
+  - GBMs will give a better result eventually, but with more effort required to get a good model.
+  - Worth running a hyperparameter grid search for GBM because it's fiddly.
+
+Rules of thumb on hardware:
+- You generally want ~8 physical CPUs per GPU
+- If model training is CPU bound, it can help to resize images to be smaller. The file I/O on the CPU may be taking too long.
+- If model training is CPU bound and GPU usage is low, you might as well go up to a "better" (i.e. bigger) model with no increase of overall execution time.
+
+Data augmentation, in particular test-time augmentation (TTA), can improve results.
+
+Resizing images to a square is a good, easy compromise to accomodate many different iamge sizes , orientations and aspect ratios.
+A more involved approach that may improve results is to batch images together and resize them to the median rectangle size.
+
+
+## 7. Collaborative filtering
