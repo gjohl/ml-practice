@@ -503,3 +503,10 @@ A more involved approach that may improve results is to batch images together an
 
 
 ## 7. Collaborative filtering
+
+
+## Further Reading
+- Bagging predictors https://link.springer.com/article/10.1007/BF00058655
+- Statistical Modeling: The Two Cultures https://www.semanticscholar.org/paper/Statistical-Modeling%3A-The-Two-Cultures-(with-and-a-Breiman/e5df6bc6da5653ad98e754b08f63326c2e52b372
+- Comparison of vision models https://www.kaggle.com/code/jhoward/the-best-vision-models-for-fine-tuning
+- 
